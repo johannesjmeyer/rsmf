@@ -46,11 +46,35 @@ class Quantumarticle:
         self.fontsizes = _fontsizes[fontsize]
         self.colors = QuantumColors
 
+        self.set_rcParams()
+
+    def set_rcParams(self):
         plt.rcParams["axes.labelsize"] = self.fontsizes.small
         plt.rcParams["axes.titlesize"] = self.fontsizes.large
         plt.rcParams["xtick.labelsize"] = self.fontsizes.footnotesize
         plt.rcParams["ytick.labelsize"] = self.fontsizes.footnotesize
         plt.rcParams["font.size"] = self.fontsizes.small
+
+        plt.rcParams["pgf.texsystem"] = "pdflatex"
+        plt.rcParams["font.family"] = "sans-serif"
+        plt.rcParams["text.usetex"] = False
+        plt.rcParams["pgf.rcfonts"] = True 
+        plt.rcParams["pgf.preamble"] = r"\usepackage{lmodern} \usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
+        
+        plt.rcParams["xtick.direction"] = "in"
+        plt.rcParams["ytick.direction"] = "in"
+        plt.rcParams["xtick.major.size"] = 4
+        plt.rcParams["ytick.major.size"] = 4    
+        plt.rcParams["lines.linewidth"] = 1
+        plt.rcParams["axes.linewidth"] = .5
+        plt.rcParams["grid.linewidth"] = .5
+        plt.rcParams["lines.markersize"] = 3
+
+        plt.rcParams["legend.frameon"] = True
+        plt.rcParams["legend.framealpha"] = 1.0
+        plt.rcParams["legend.fancybox"] = False
+
+        plt.rcParams["axes.edgecolor"] = self.colors.quantumgray
 
     def figure(self, aspect_ratio=1 / 1.62, width_ratio=1.0, wide=False):
         """Sets up the plot with the fitting arguments so that the font sizes of the plot

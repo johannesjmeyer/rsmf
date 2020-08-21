@@ -1,6 +1,7 @@
 import pytest
 import numpy as np
 from rsmf.quantumarticle import parse, Quantumarticle
+import matplotlib.pyplot as plt
 
 
 class TestParse:
@@ -50,6 +51,41 @@ class TestParse:
         assert formatter.paper == "a4paper"
         assert formatter.columns == "twocolumn"
         assert formatter.fontsize == 12
+
+class TestRcParams:
+    """Test that rcParams are properly set."""
+
+    def test_rcParams(self):
+        preamble = r"\documentclass[a4paper,12pt,noarxiv]{quantumarticle}"
+        formatter = parse(preamble)
+
+        assert plt.rcParams["axes.labelsize"] == formatter.fontsizes.small
+        assert plt.rcParams["axes.titlesize"] == formatter.fontsizes.large
+        assert plt.rcParams["xtick.labelsize"] == formatter.fontsizes.footnotesize
+        assert plt.rcParams["ytick.labelsize"] == formatter.fontsizes.footnotesize
+        assert plt.rcParams["font.size"] == formatter.fontsizes.small
+
+        assert plt.rcParams["pgf.texsystem"] == "pdflatex"
+        assert plt.rcParams["font.family"] == ["sans-serif"]
+        assert plt.rcParams["text.usetex"] == False
+        assert plt.rcParams["pgf.rcfonts"] == True 
+        assert plt.rcParams["pgf.preamble"] == r"\usepackage{lmodern} \usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
+        
+        assert plt.rcParams["xtick.direction"] == "in"
+        assert plt.rcParams["ytick.direction"] == "in"
+        assert plt.rcParams["xtick.major.size"] == 4
+        assert plt.rcParams["ytick.major.size"] == 4    
+        assert plt.rcParams["lines.linewidth"] == 1
+        assert plt.rcParams["axes.linewidth"] == .5
+        assert plt.rcParams["grid.linewidth"] == .5
+        assert plt.rcParams["lines.markersize"] == 3
+
+        assert plt.rcParams["legend.frameon"] == True
+        assert plt.rcParams["legend.framealpha"] == 1.0
+        assert plt.rcParams["legend.fancybox"] == False
+
+        assert plt.rcParams["axes.edgecolor"] == formatter.colors.quantumgray
+
 
 
 class TestFigure:
