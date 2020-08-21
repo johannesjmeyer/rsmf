@@ -1,3 +1,4 @@
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 from .fontsize import Fontsizes10, Fontsizes11, Fontsizes12
 
@@ -46,21 +47,30 @@ class Quantumarticle:
         self.fontsizes = _fontsizes[fontsize]
         self.colors = QuantumColors
 
+        mpl.use("pgf")
+        mpl.style.use("seaborn-white")
         self.set_rcParams()
 
-    def set_rcParams(self):
+    def set_default_fontsizes(self):
         plt.rcParams["axes.labelsize"] = self.fontsizes.small
         plt.rcParams["axes.titlesize"] = self.fontsizes.large
         plt.rcParams["xtick.labelsize"] = self.fontsizes.footnotesize
         plt.rcParams["ytick.labelsize"] = self.fontsizes.footnotesize
         plt.rcParams["font.size"] = self.fontsizes.small
 
+    def set_rcParams(self):
+        self.set_default_fontsizes()
+
         plt.rcParams["pgf.texsystem"] = "pdflatex"
         plt.rcParams["font.family"] = "sans-serif"
         plt.rcParams["text.usetex"] = False
         plt.rcParams["pgf.rcfonts"] = True 
         plt.rcParams["pgf.preamble"] = r"\usepackage{lmodern} \usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
-        
+
+        plt.rcParams["xtick.color"] = self.colors.quantumgray
+        plt.rcParams["ytick.color"] = self.colors.quantumgray
+        plt.rcParams["xtick.major.width"] = .5
+        plt.rcParams["ytick.major.width"] = .5
         plt.rcParams["xtick.direction"] = "in"
         plt.rcParams["ytick.direction"] = "in"
         plt.rcParams["xtick.major.size"] = 4
