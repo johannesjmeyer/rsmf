@@ -2,20 +2,12 @@ import matplotlib.pyplot as plt
 from .fontsize import Fontsizes10, Fontsizes11, Fontsizes12
 
 _widths = {
-    # a4paper columnwidth = 426.79135 pt = 5.93 in
-    # letterpaper columnwidth = 443.57848 pt = 6.16 in
     "onecolumn": {"a4paper": 5.93, "letterpaper": 6.16},
-    # a4paper columnwidth = 231.84843 pt = 3.22 in
-    # letterpaper columnwidth = 240.24199 pt = 3.34 in
     "twocolumn": {"a4paper": 3.22, "letterpaper": 3.34},
 }
 
 _wide_widths = {
-    # a4paper wide columnwidth = 426.79135 pt = 5.93 in
-    # letterpaper wide columnwidth = 443.57848 pt = 6.16 in
     "onecolumn": {"a4paper": 5.93, "letterpaper": 6.16},
-    # a4paper wide linewidth = 483.69687 pt = 6.72 in
-    # letterpaper wide linewidth = 500.48400 pt = 6.95 in
     "twocolumn": {"a4paper": 6.72, "letterpaper": 6.95},
 }
 
@@ -30,32 +22,24 @@ class QuantumColors:
     quantumviolet = "#53257F"
     quantumgray = "#555555"
 
-
-# Sets up the plot with the fitting arguments so that the font sizes of the plot
-# and the font sizes of the document are well aligned
-#
-#     columns : string = ('onecolumn' | 'twocolumn')
-#         the columns you used to set up your quantumarticle,
-#         defaults to 'twocolumn'
-#
-#     paper : string = ('a4paper' | 'letterpaper')
-#         the paper size you used to set up your quantumarticle,
-#         defaults to 'a4paper'
-#
-#     fontsize : int = (10 | 11 | 12)
-#         the fontsize you used to set up your quantumarticle as int
-#
-#     (returns) : dict
-#         parameters that can be used for plot adjustments
-
-
 class Quantumarticle:
     def __init__(self, columns="twocolumn", paper="a4paper", fontsize=10):
+        """Sets up the plot with the fitting arguments so that the font sizes of the plot
+        and the font sizes of the document are well aligned.
+
+        Args:
+            columns (str, optional):  the columns you used to set up your quantumarticle,
+                either "onecolumn" or "twocolumn". Defaults to "twocolumn".
+            paper (str, optional): the paper size you used to set up your quantumarticle,
+                either "a4paper" or "letterpaper". Defaults to "a4paper".
+            fontsize (int, optional): the fontsize you used to set up your quantumarticle,
+                either 10, 11 or 12. Defaults to 10.
+        """
         self.width = _widths[columns][paper]
         self.wide_width = _wide_widths[columns][paper]
 
-        # Use the default fontsize scaling of LaTeX
         self.fontsizes = _fontsizes[fontsize]
+        self.colors = QuantumColors
 
         plt.rcParams["axes.labelsize"] = self.fontsizes["small"]
         plt.rcParams["axes.titlesize"] = self.fontsizes["large"]
@@ -63,7 +47,19 @@ class Quantumarticle:
         plt.rcParams["ytick.labelsize"] = self.fontsizes["footnotesize"]
         plt.rcParams["font.size"] = self.fontsizes["small"]
 
-    def plot_setup(self, aspect_ratio=1 / 1.62, width_ratio=1.0, wide=False):
+    def figure(self, aspect_ratio=1 / 1.62, width_ratio=1.0, wide=False):
+        """Sets up the plot with the fitting arguments so that the font sizes of the plot
+        and the font sizes of the document are well aligned.
+
+        Args:
+            aspect_ratio ([type], optional): the aspect ratio (width/height) of your plot. Defaults to the golden ratio.
+            width_ratio (float, optional): the width of your plot in multiples of \columnwidth. Defaults to 1.0.
+            wide (bool, optional): indicates if the figures spans two columns in twocolumn mode, 
+                i.e. if the figure* environment is used, has no effect in onecolumn mode . Defaults to False.
+
+        Returns:
+            matplotlib.Figure: The matplotlib Figure object
+        """
         width = (self.wide_width if wide else self.width) * width_ratio
         height = width * aspect_ratio
 
