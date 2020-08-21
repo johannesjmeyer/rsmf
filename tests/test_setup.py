@@ -50,8 +50,6 @@ class TestHelperMethods:
     def test_extract_preamble(self):
         preamble = extract_preamble(DUMMY_PATH)
 
-        print(preamble)
-
         assert (
             preamble
             == r"""\documentclass[
@@ -64,6 +62,28 @@ class TestHelperMethods:
 
 \usepackage{amsmath} 					% Paket 
 \usepackage{amssymb} 					% Paket
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=3cm,bindingoffset=5mm]{geometry}
+
+\hyphenation{awe-some}
+
+"""
+        )
+
+    def test_extract_and_clean_preamble(self):
+        preamble = clean_preamble(extract_preamble(DUMMY_PATH))
+
+        assert (
+            preamble
+            == r"""\documentclass[
+	twoside,
+	a4paper, 						
+
+]{quantumarticle}							
+
+\pdfoutput=1
+
+\usepackage{amsmath} 					
+\usepackage{amssymb} 					
 \usepackage[a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=3cm,bindingoffset=5mm]{geometry}
 
 \hyphenation{awe-some}
