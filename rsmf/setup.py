@@ -1,10 +1,13 @@
 from .quantumarticle import parse as quantumarticle_parse
+import re
 
 _PARSERS = [quantumarticle_parse]
 
+_comment_regex = re.compile("(%.*)")
+
 
 def clean_preamble(preamble):
-    # TODO: remove comments
+    preamble = _comment_regex.sub("", preamble)
     return preamble
 
 

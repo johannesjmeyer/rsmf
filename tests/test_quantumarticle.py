@@ -85,7 +85,7 @@ class TestFigure:
             ),
             (
                 {"columns": "onecolumn", "paper": "letterpaper", "fontsize": 11},
-                {"aspect_ratio": .8, "width_ratio": 1.5, "wide": False},
+                {"aspect_ratio": 0.8, "width_ratio": 1.5, "wide": False},
                 (9.24, 7.392),
             ),
         ],
@@ -95,4 +95,3 @@ class TestFigure:
         formatter = Quantumarticle(**paper_kwargs)
         fig = formatter.figure(**figure_kwargs)
         assert np.allclose(fig.get_size_inches(), np.array(expected_format))
-
