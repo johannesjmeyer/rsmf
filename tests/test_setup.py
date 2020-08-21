@@ -102,9 +102,3 @@ class TestSetup:
         result2 = setup(DUMMY_PATH)
 
         assert result1 == result2
-
-    def test_setup_module_variables(self):
-        result = setup(r"\documentclass[twoside,a4paper,headsepline]{quantumarticle}")
-
-        assert rsmf.fontsizes == result.fontsizes
-        assert rsmf.colors == result.colors

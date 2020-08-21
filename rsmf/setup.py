@@ -41,8 +41,4 @@ def setup(arg):
         if result:
             break
 
-    module = sys.modules["rsmf"]
-    setattr(module, "fontsizes", result.fontsizes)
-    setattr(module, "colors", result.colors)
-
     return result
