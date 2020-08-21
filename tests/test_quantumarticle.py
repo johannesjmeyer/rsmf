@@ -15,9 +15,11 @@ class TestParse:
         ],
     )
     def test_parse_none(self, preamble):
+        """Test that the parser returns None if the preamble is not for quantumarticle."""
         assert parse(preamble) is None
 
     def test_parse_default(self):
+        """Test the default values."""
         preamble = r"\documentclass{quantumarticle}"
         formatter = parse(preamble)
 
@@ -28,6 +30,7 @@ class TestParse:
         assert formatter.fontsize == 10
 
     def test_parse_all(self):
+        """Test the parsing of all options."""
         preamble = r"\documentclass[onecolumn,unpublished,letterpaper,11pt]{quantumarticle}"
         formatter = parse(preamble)
 
@@ -38,6 +41,7 @@ class TestParse:
         assert formatter.fontsize == 11
 
     def test_parse_some(self):
+        """Test the parsing if only some options are present."""
         preamble = r"\documentclass[a4paper,12pt,noarxiv]{quantumarticle}"
         formatter = parse(preamble)
 
@@ -87,6 +91,7 @@ class TestFigure:
         ],
     )
     def test_figure_format(self, paper_kwargs, figure_kwargs, expected_format):
+        """Assert that the figure output has the correct dimensions."""
         formatter = Quantumarticle(**paper_kwargs)
         fig = formatter.figure(**figure_kwargs)
         assert np.allclose(fig.get_size_inches(), np.array(expected_format))
