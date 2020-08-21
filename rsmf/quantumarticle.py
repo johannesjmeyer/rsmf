@@ -22,6 +22,7 @@ class QuantumColors:
     quantumviolet = "#53257F"
     quantumgray = "#555555"
 
+
 class Quantumarticle:
     def __init__(self, columns="twocolumn", paper="a4paper", fontsize=10):
         """Sets up the plot with the fitting arguments so that the font sizes of the plot
