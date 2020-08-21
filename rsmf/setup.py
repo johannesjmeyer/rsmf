@@ -1,6 +1,7 @@
 from .quantumarticle import parse as quantumarticle_parse
 import re
 from pathlib import Path
+import sys
 
 _PARSERS = [quantumarticle_parse]
 
@@ -39,5 +40,9 @@ def setup(arg):
 
         if result:
             break
+
+    module = sys.modules["rsmf"]
+    setattr(module, "fontsizes", result.fontsizes)
+    setattr(module, "colors", result.colors)
 
     return result
