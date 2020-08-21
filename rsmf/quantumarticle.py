@@ -35,17 +35,21 @@ class Quantumarticle:
             fontsize (int, optional): the fontsize you used to set up your quantumarticle,
                 either 10, 11 or 12. Defaults to 10.
         """
+        self.columns = columns
+        self.paper = paper
+        self.fontsize = fontsize
+
         self.width = _widths[columns][paper]
         self.wide_width = _wide_widths[columns][paper]
 
         self.fontsizes = _fontsizes[fontsize]
         self.colors = QuantumColors
 
-        plt.rcParams["axes.labelsize"] = self.fontsizes["small"]
-        plt.rcParams["axes.titlesize"] = self.fontsizes["large"]
-        plt.rcParams["xtick.labelsize"] = self.fontsizes["footnotesize"]
-        plt.rcParams["ytick.labelsize"] = self.fontsizes["footnotesize"]
-        plt.rcParams["font.size"] = self.fontsizes["small"]
+        plt.rcParams["axes.labelsize"] = self.fontsizes.small
+        plt.rcParams["axes.titlesize"] = self.fontsizes.large
+        plt.rcParams["xtick.labelsize"] = self.fontsizes.footnotesize
+        plt.rcParams["ytick.labelsize"] = self.fontsizes.footnotesize
+        plt.rcParams["font.size"] = self.fontsizes.small
 
     def figure(self, aspect_ratio=1 / 1.62, width_ratio=1.0, wide=False):
         """Sets up the plot with the fitting arguments so that the font sizes of the plot
@@ -89,4 +93,4 @@ def parse(preamble):
     else:
         kwargs["fontsize"] = 10
 
-    return Quantumarticle(kwargs)
+    return Quantumarticle(**kwargs)
