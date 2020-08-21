@@ -70,6 +70,13 @@ class Quantumarticle:
 
         return plt.figure(figsize=(width, height), dpi=120, facecolor="white")
 
+    def __eq__(self, other):
+        return (
+            self.fontsize == other.fontsize
+            and self.columns == other.columns
+            and self.paper == other.paper
+        )
+
 
 def parse(preamble):
     if not "{quantumarticle}" in preamble:

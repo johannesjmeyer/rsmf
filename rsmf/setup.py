@@ -1,5 +1,6 @@
 from .quantumarticle import parse as quantumarticle_parse
 import re
+from pathlib import Path
 
 _PARSERS = [quantumarticle_parse]
 
@@ -11,9 +12,26 @@ def clean_preamble(preamble):
     return preamble
 
 
+def extract_preamble(path):
+    lines = []
+
+    with open(path, "r") as file:
+        for line in file:
+            if "\\begin{document}" in line:
+                break
+
+            lines.append(line)
+
+    return "".join(lines)
+
+
 def setup(arg):
-    # TODO: if the argument is a file path, read file until \begin{document}
-    preamble = clean_preamble(arg)
+    if Path(arg).exists():
+        preamble = extract_preamble(arg)
+    else:
+        preamble = arg
+
+    preamble = clean_preamble(preamble)
 
     result = None
     for parser in _PARSERS:

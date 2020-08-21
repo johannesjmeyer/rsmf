@@ -1,5 +1,8 @@
 import pytest
-from rsmf.setup import setup, clean_preamble
+from pathlib import Path
+from rsmf.setup import setup, clean_preamble, extract_preamble
+
+DUMMY_PATH = Path(__file__).parent / "dummy.tex"
 
 
 class TestHelperMethods:
@@ -43,3 +46,38 @@ class TestHelperMethods:
         """Test that strings that need no cleaning are not altered."""
 
         assert expected_output == clean_preamble(preamble)
+
+    def test_extract_preamble(self):
+        preamble = extract_preamble(DUMMY_PATH)
+
+        print(preamble)
+
+        assert (
+            preamble
+            == r"""\documentclass[
+	twoside,
+	a4paper, 						% A4 Format benutzen
+%	headsepline,						% Linie nach Kopfzeile
+]{quantumarticle}							% oder auch "scrartcl"
+
+\pdfoutput=1
+
+\usepackage{amsmath} 					% Paket 
+\usepackage{amssymb} 					% Paket
+\usepackage[a4paper, left=2.5cm, right=2.5cm, top=3cm, bottom=3cm,bindingoffset=5mm]{geometry}
+
+\hyphenation{awe-some}
+
+"""
+        )
+
+
+class TestSetup:
+    """Test that setup works as expected."""
+
+    def test_setup_equivalence(self):
+        """Test that setup from file is equivalent to string setup."""
+        result1 = setup(r"\documentclass[twoside,a4paper,headsepline]{quantumarticle}")
+        result2 = setup(DUMMY_PATH)
+
+        assert result1 == result2
