@@ -42,6 +42,8 @@ def setup(arg):
             break
 
     if result is None:
-        raise Exception("No formatter was found for the given argument. This means either there is no formatter, or, if you gave a file path that it does not exist.")
+        raise Exception(
+            "No formatter was found for the given argument. This means either there is no formatter, or, if you gave a file path that it does not exist."
+        )
 
     return result

@@ -52,6 +52,7 @@ class TestParse:
         assert formatter.columns == "twocolumn"
         assert formatter.fontsize == 12
 
+
 class TestRcParams:
     """Test that rcParams are properly set."""
 
@@ -68,16 +69,19 @@ class TestRcParams:
         assert plt.rcParams["pgf.texsystem"] == "pdflatex"
         assert plt.rcParams["font.family"] == ["sans-serif"]
         assert plt.rcParams["text.usetex"] == False
-        assert plt.rcParams["pgf.rcfonts"] == True 
-        assert plt.rcParams["pgf.preamble"] == r"\usepackage{lmodern} \usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
-        
+        assert plt.rcParams["pgf.rcfonts"] == True
+        assert (
+            plt.rcParams["pgf.preamble"]
+            == r"\usepackage{lmodern} \usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
+        )
+
         assert plt.rcParams["xtick.direction"] == "in"
         assert plt.rcParams["ytick.direction"] == "in"
         assert plt.rcParams["xtick.major.size"] == 4
-        assert plt.rcParams["ytick.major.size"] == 4    
+        assert plt.rcParams["ytick.major.size"] == 4
         assert plt.rcParams["lines.linewidth"] == 1
-        assert plt.rcParams["axes.linewidth"] == .5
-        assert plt.rcParams["grid.linewidth"] == .5
+        assert plt.rcParams["axes.linewidth"] == 0.5
+        assert plt.rcParams["grid.linewidth"] == 0.5
         assert plt.rcParams["lines.markersize"] == 3
 
         assert plt.rcParams["legend.frameon"] == True
@@ -85,7 +89,6 @@ class TestRcParams:
         assert plt.rcParams["legend.fancybox"] == False
 
         assert plt.rcParams["axes.edgecolor"] == formatter.colors.quantumgray
-
 
 
 class TestFigure:
