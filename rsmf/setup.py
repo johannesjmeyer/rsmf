@@ -2,11 +2,12 @@
 Main routines to invoke the module from code.
 """
 
+import re
+import sys
+from pathlib import Path
+
 from .quantumarticle import parse as quantumarticle_parse
 from .revtex import parse as revtex_parse
-import re
-from pathlib import Path
-import sys
 
 _PARSERS = [quantumarticle_parse, revtex_parse]
 

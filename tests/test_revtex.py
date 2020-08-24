@@ -1,7 +1,8 @@
-import pytest
-import numpy as np
-from rsmf.revtex import parse, RevtexFormatter
 import matplotlib.pyplot as plt
+import numpy as np
+import pytest
+
+from rsmf.revtex import RevtexFormatter, parse
 
 
 class TestParse:

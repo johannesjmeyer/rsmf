@@ -4,6 +4,7 @@ Support for the revtex4-1 documentclass of the APS journals.
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+
 from .fontsize import Fontsizes10, Fontsizes11, Fontsizes12
 
 _widths = {

@@ -4,6 +4,7 @@ Support for the quantumarticle documentclass of Quantum journal.
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+
 from .fontsize import Fontsizes10, Fontsizes11, Fontsizes12
 
 _widths = {
