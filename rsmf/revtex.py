@@ -1,3 +1,7 @@
+"""
+Support for the revtex4-1 documentclass of the APS journals.
+"""
+
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from .fontsize import Fontsizes10, Fontsizes11, Fontsizes12
@@ -38,6 +42,7 @@ class Revtex:
         self.set_rcParams()
 
     def set_default_fontsizes(self):
+        """Adjust the fontsizes in rcParams to the default values matching the surrounding document."""
         plt.rcParams["axes.labelsize"] = self.fontsizes.small
         plt.rcParams["axes.titlesize"] = self.fontsizes.large
         plt.rcParams["xtick.labelsize"] = self.fontsizes.footnotesize
@@ -45,6 +50,7 @@ class Revtex:
         plt.rcParams["font.size"] = self.fontsizes.small
 
     def set_rcParams(self):
+        """Adjust the rcParams to the default values."""
         self.set_default_fontsizes()
 
         plt.rcParams["pgf.texsystem"] = "pdflatex"
@@ -90,6 +96,15 @@ class Revtex:
 
 
 def parse(preamble):
+    """Parse the preamble to extract the informations relevant for plot style.
+
+    Args:
+        preamble (str): The preamble, containing at least the \documentclass command.
+
+    Returns:
+        Union[NoneType,Revtex]: Revtex object with the relevant properties if the preamble
+            is for a quantumarticle document. None otherwise.
+    """
     if not "{revtex4-1}" in preamble:
         return None
 
