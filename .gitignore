@@ -133,3 +133,5 @@ dmypy.json
 *.aux
 
 docs/_build
+
+.vscode
