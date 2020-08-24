@@ -14,7 +14,7 @@ info = {
     'url': 'https://github.com/johannesjmeyer/rsmf',
     'packages': find_packages(where="."),
     'description': 'rsmf (right-size my figures) helps you prepare publication-ready figures with matplotlib.',
-    'long_description': open('README.rst').read(),
+    'long_description': open('README.md').read(),
     'provides': ["rsmf"],
     'install_requires': requirements,
 }
