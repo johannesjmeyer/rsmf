@@ -1,3 +1,5 @@
+[![Documentation Status](https://readthedocs.org/projects/rsmf/badge/?version=latest)](https://rsmf.readthedocs.io/en/latest/?badge=latest)
+
 # rsmf (right-size my figures)
 
 As a researcher, you usually want your work to be presented as nice as possible. This library helps with that by providing a means to 
