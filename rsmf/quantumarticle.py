@@ -67,8 +67,6 @@ class Quantumarticle:
         plt.rcParams["pgf.rcfonts"] = True 
         plt.rcParams["pgf.preamble"] = r"\usepackage{lmodern} \usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
 
-        plt.rcParams["xtick.color"] = self.colors.quantumgray
-        plt.rcParams["ytick.color"] = self.colors.quantumgray
         plt.rcParams["xtick.major.width"] = .5
         plt.rcParams["ytick.major.width"] = .5
         plt.rcParams["xtick.direction"] = "in"
