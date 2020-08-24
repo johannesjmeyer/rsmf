@@ -1,7 +1,7 @@
 # rsmf (right-size my figures)
 
 As a researcher, you usually want your work to be presented as nice as possible. This library helps with that by providing a means to 
-automatically adjust figure sizes and fontsizes in matplotlib to fit the ones in commonly used scientific journals. Currently `quantumarticle` is supported. 
+automatically adjust figure sizes and fontsizes in matplotlib to fit the ones in commonly used scientific journals. Currently `quantumarticle` and `revtex4-1` are supported. 
 
 ## Usage
 
