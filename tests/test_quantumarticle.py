@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from rsmf.quantumarticle import parse, Quantumarticle
+from rsmf.quantumarticle import parse, QuantumarticleFormatter
 import matplotlib.pyplot as plt
 
 
@@ -131,6 +131,6 @@ class TestFigure:
     )
     def test_figure_format(self, paper_kwargs, figure_kwargs, expected_format):
         """Assert that the figure output has the correct dimensions."""
-        formatter = Quantumarticle(**paper_kwargs)
+        formatter = QuantumarticleFormatter(**paper_kwargs)
         fig = formatter.figure(**figure_kwargs)
         assert np.allclose(fig.get_size_inches(), np.array(expected_format))

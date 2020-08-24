@@ -1,6 +1,6 @@
 import pytest
 import numpy as np
-from rsmf.revtex import parse, Revtex
+from rsmf.revtex import parse, RevtexFormatter
 import matplotlib.pyplot as plt
 
 
@@ -122,6 +122,6 @@ class TestFigure:
     )
     def test_figure_format(self, paper_kwargs, figure_kwargs, expected_format):
         """Assert that the figure output has the correct dimensions."""
-        formatter = Revtex(**paper_kwargs)
+        formatter = RevtexFormatter(**paper_kwargs)
         fig = formatter.figure(**figure_kwargs)
         assert np.allclose(fig.get_size_inches(), np.array(expected_format))

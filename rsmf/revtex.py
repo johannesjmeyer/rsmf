@@ -18,7 +18,7 @@ _fontsizes = {
 }
 
 
-class Revtex:
+class RevtexFormatter:
     def __init__(self, columns="twocolumn", fontsize=10):
         """Sets up the plot with the fitting arguments so that the font sizes of the plot
         and the font sizes of the document are well aligned.
@@ -122,4 +122,4 @@ def parse(preamble):
     else:
         kwargs["fontsize"] = 10
 
-    return Revtex(**kwargs)
+    return RevtexFormatter(**kwargs)
