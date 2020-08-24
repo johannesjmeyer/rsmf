@@ -10,6 +10,9 @@ Welcome to rsmf's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   source/modules
+   source/rsmf
+
 
 
 Indices and tables
