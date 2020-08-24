@@ -96,7 +96,7 @@ class TestFigure:
             (
                 {"columns": "twocolumn", "fontsize": 11},
                 {"aspect_ratio": 1.4, "width_ratio": 1.0, "wide": False},
-                (3.42 , 4.788),
+                (3.42, 4.788),
             ),
             (
                 {"columns": "twocolumn", "fontsize": 11},
@@ -116,7 +116,7 @@ class TestFigure:
             (
                 {"columns": "onecolumn", "fontsize": 11},
                 {"aspect_ratio": 0.8, "width_ratio": 1.5, "wide": False},
-                (5.13 , 4.104),
+                (5.13, 4.104),
             ),
         ],
     )

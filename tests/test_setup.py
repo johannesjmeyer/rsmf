@@ -1,7 +1,7 @@
 import pytest
 from pathlib import Path
 import rsmf
-from rsmf.setup import setup, clean_preamble, extract_preamble
+from rsmf.setup import setup, _clean_preamble, _extract_preamble
 
 DUMMY_PATH = Path(__file__).parent / "dummy.tex"
 
@@ -23,7 +23,7 @@ class TestHelperMethods:
     def test_no_clean(self, preamble):
         """Test that strings that need no cleaning are not altered."""
 
-        assert preamble == clean_preamble(preamble)
+        assert preamble == _clean_preamble(preamble)
 
     @pytest.mark.parametrize(
         "preamble,expected_output",
@@ -46,10 +46,10 @@ class TestHelperMethods:
     def test_remove_comment(self, preamble, expected_output):
         """Test that strings that need no cleaning are not altered."""
 
-        assert expected_output == clean_preamble(preamble)
+        assert expected_output == _clean_preamble(preamble)
 
     def test_extract_preamble(self):
-        preamble = extract_preamble(DUMMY_PATH)
+        preamble = _extract_preamble(DUMMY_PATH)
 
         assert (
             preamble
@@ -71,7 +71,7 @@ class TestHelperMethods:
         )
 
     def test_extract_and_clean_preamble(self):
-        preamble = clean_preamble(extract_preamble(DUMMY_PATH))
+        preamble = _clean_preamble(_extract_preamble(DUMMY_PATH))
 
         assert (
             preamble
