@@ -28,8 +28,8 @@ class Revtex:
         self.columns = columns
         self.fontsize = fontsize
 
-        self.width = _widths["onecolumn"]
-        self.wide_width = _widths["twocolumn"]
+        self.width = _widths["twocolumn"]
+        self.wide_width = _widths["onecolumn"]
 
         self.fontsizes = _fontsizes[fontsize]
 
@@ -48,12 +48,9 @@ class Revtex:
         self.set_default_fontsizes()
 
         plt.rcParams["pgf.texsystem"] = "pdflatex"
-        plt.rcParams["font.family"] = "sans-serif"
+        plt.rcParams["font.family"] = "serif"
         plt.rcParams["text.usetex"] = False
         plt.rcParams["pgf.rcfonts"] = True
-        plt.rcParams[
-            "pgf.preamble"
-        ] = r"\usepackage{lmodern} \usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
 
         plt.rcParams["xtick.major.width"] = 0.5
         plt.rcParams["ytick.major.width"] = 0.5
