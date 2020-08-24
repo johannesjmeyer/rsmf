@@ -4,38 +4,12 @@ rsmf package
 Submodules
 ----------
 
-rsmf.fontsize module
---------------------
+.. toctree::
 
-.. automodule:: rsmf.fontsize
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-rsmf.quantumarticle module
---------------------------
-
-.. automodule:: rsmf.quantumarticle
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-rsmf.revtex module
-------------------
-
-.. automodule:: rsmf.revtex
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-rsmf.setup module
------------------
-
-.. automodule:: rsmf.setup
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
+   rsmf.fontsize
+   rsmf.quantumarticle
+   rsmf.revtex
+   rsmf.setup
 
 Module contents
 ---------------
