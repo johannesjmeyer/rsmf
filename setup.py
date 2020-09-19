@@ -15,7 +15,7 @@ info = {
     "packages": find_packages(where="."),
     "description": "rsmf (right-size my figures) helps you prepare publication-ready figures with matplotlib.",
     "long_description": open("README.md").read(),
-    long_description_content_type="text/markdown",
+    "long_description_content_type": "text/markdown",
     "provides": ["rsmf"],
     "install_requires": requirements,
     "classifiers": [

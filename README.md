@@ -109,4 +109,4 @@ When calling `rsmf.setup`, matplotlib's `rcParams` are adjusted to make the font
 
 
 # Contribute
-Do you have trouble setting up plots for your favorite document class and it is not supported here? Don not hesitate to make a PR!
+Do you have trouble setting up plots for your favorite document class and it is not supported here? Do not hesitate to make a PR!
