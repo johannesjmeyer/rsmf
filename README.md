@@ -7,11 +7,14 @@ automatically adjust figure sizes and font sizes in matplotlib to fit the ones i
 
 # Install
 
-Currently, you have to install the package from GitHub.
+You can get the latest release version from PyPI.
+```bash
+pip install rsmf
+```
+To get the latest development version you have to install the package from GitHub.
 ```bash
 pip install git+https://www.github.com/johannesjmeyer/rsmf
 ```
-But after the alpha phase is over it will end up on PyPI!
 
 # Usage
 
