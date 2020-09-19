@@ -17,6 +17,11 @@ info = {
     "long_description": open("README.md").read(),
     "provides": ["rsmf"],
     "install_requires": requirements,
+    "classifiers": [
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Science/Research",
+        "Programming Language :: Python :: 3",
+    ],
 }
 
 setup(**(info))
