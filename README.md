@@ -16,7 +16,7 @@ To get the latest development version you have to install the package from GitHu
 pip install git+https://www.github.com/johannesjmeyer/rsmf
 ```
 
-The package depends on matplotlib's pgf-backend. To be able to use it you need to have a working TeX distribution with `pdflatex` installed (see further Issue #2).
+The package depends on matplotlib's pgf-backend. To be able to use it you need to have a working TeX distribution with `pdflatex` installed (see further [Issue #2](https://github.com/johannesjmeyer/rsmf/issues/2)).
 
 # Usage
 
