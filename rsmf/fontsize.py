@@ -35,3 +35,10 @@ class Fontsizes12:
     LARGE = 20
     huge = 25
     Huge = 25
+
+
+_fontsizes = {
+    10: Fontsizes10,
+    11: Fontsizes12,
+    12: Fontsizes12,
+}
