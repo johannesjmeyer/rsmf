@@ -1,7 +1,3 @@
-"""
-Support for...
-"""
-
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
@@ -9,6 +5,16 @@ from .fontsize import _fontsizes
 
 
 class Formatter:
+    """
+    A generic Formatter for subtyping by journal-specific formatters.
+
+    Inherited classes should set the following:
+      self._documentclass_identifier
+      self._widths
+      self._wide_widths
+      
+    """
+
     def __init__(self, columns, paper, fontsize):
         """Sets up the plot with the fitting arguments so that the font sizes of the plot
         and the font sizes of the document are well aligned.
