@@ -10,8 +10,6 @@ from .revtexlike import RevtexLikeFormatter, RevtexLikeParser
 
 class QuantumarticleFormatter(RevtexLikeFormatter):
 
-    _documentclass_identifier = "{quantumarticle}"
-
     _widths = {
         "onecolumn": {"a4paper": 5.93, "letterpaper": 6.16},
         "twocolumn": {"a4paper": 3.22, "letterpaper": 3.34},

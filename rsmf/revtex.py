@@ -1,5 +1,5 @@
 """
-Support for the revtex4-1 documentclass of the APS journals.
+Support for the revtex4-1 and revtex4-2 documentclasses of the APS journals.
 """
 
 import matplotlib as mpl
@@ -9,8 +9,6 @@ from .revtexlike import RevtexLikeFormatter, RevtexLikeParser
 
 
 class RevtexFormatter(RevtexLikeFormatter):
-
-    _documentclass_identifier = "{revtex4-1}"
 
     _widths = {
         "onecolumn": {"a4paper": 3.42},

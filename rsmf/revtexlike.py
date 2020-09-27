@@ -10,7 +10,6 @@ class RevtexLikeFormatter(Formatter):
     A generic Formatter for revtex-like journals.
 
     Inherited classes should set the following:
-      self._documentclass_identifier
       self._widths
       self._wide_widths
       
