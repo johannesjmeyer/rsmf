@@ -13,7 +13,7 @@ class RevtexFormatter(Formatter):
     _documentclass_identifier = "{revtex4-1}"
 
     _widths = {
-        "onecolumn": {"a4paper": 7.08},
+        "onecolumn": {"a4paper": 3.42},
         "twocolumn": {"a4paper": 3.42},
     }
 
