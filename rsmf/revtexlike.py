@@ -35,14 +35,17 @@ class RevtexLikeFormatter(Formatter):
 
     @property
     def width(self):
+        """Width of the plot."""
         return self._widths[self.columns][self.paper]
 
     @property
     def wide_width(self):
+        """Wide width of the plot."""
         return self._wide_widths[self.columns][self.paper]
 
     @property
     def fontsizes(self):
+        """Fontsizes as specified by the underlying document."""
         return default_fontsizes[self.fontsize]
 
     def set_default_fontsizes(self):
@@ -63,10 +66,26 @@ class RevtexLikeFormatter(Formatter):
 
 class RevtexLikeParser:
     def __init__(self, documentclass_identifiers, formatter_class):
+        """Initializes the parser.
+
+        Args:
+            documentclass_identifiers (List[string]): Strings identifying the supported document class.
+            formatter_class (class): Class object describing the formatter.
+        """
         self.documentclass_identifiers = documentclass_identifiers
         self.formatter_class = formatter_class
 
     def __call__(self, preamble):
+        """Parse the given preamble and extract the formatter.
+
+        Args:
+            preamble (string): Preamble of the target document.
+
+        Returns:
+            Union[NoneType,Formatter]: Either a formatter if the target document has the given
+                document class or None.
+        """
+        # TODO: Add support for regexes to support things like \documentclass[rmp,aps]{revtex4-1}
         for documentclass_identifier in self.documentclass_identifiers:
             if documentclass_identifier in preamble:
                 return self.formatter_class(**self._extract_kwargs(preamble))
