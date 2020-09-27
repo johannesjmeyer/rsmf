@@ -5,10 +5,10 @@ Support for the revtex4-1 documentclass of the APS journals.
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-from .formatters import Formatter
+from .revtexlike import RevtexLikeFormatter
 
 
-class RevtexFormatter(Formatter):
+class RevtexFormatter(RevtexLikeFormatter):
 
     _documentclass_identifier = "{revtex4-1}"
 

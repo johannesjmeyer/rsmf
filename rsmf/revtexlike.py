@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 from .fontsize import _fontsizes
 
 
-class Formatter:
+class RevtexLikeFormatter:
     """
-    A generic Formatter for subtyping by journal-specific formatters.
+    A generic Formatter for revtex-like journals.
 
     Inherited classes should set the following:
       self._documentclass_identifier

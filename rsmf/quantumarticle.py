@@ -5,10 +5,10 @@ Support for the quantumarticle documentclass of Quantum journal.
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-from .formatters import Formatter
+from .revtexlike import RevtexLikeFormatter
 
 
-class QuantumarticleFormatter(Formatter):
+class QuantumarticleFormatter(RevtexLikeFormatter):
 
     _documentclass_identifier = "{quantumarticle}"
 
