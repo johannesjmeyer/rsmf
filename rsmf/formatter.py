@@ -19,6 +19,7 @@ class Formatter(abc.ABC):
         self.set_rcParams()
         # TODO: Make sure set_rcParams is called after the fontsizes in the subclass are adjusted
 
+    # TODO: Adjust names to columnwidth and wide_columnwidth, advertise as part of API
     @abc.abstractproperty
     def width(self):
         raise NotImplementedError("width is not implemented in subclass.")
@@ -30,6 +31,9 @@ class Formatter(abc.ABC):
     @property
     def fontsizes(self):
         return self._fontsizes
+
+    # TODO: Brainstorm a better way to advertise additional info (like specific colors)
+    #       in the API. Maybe through a "props" dict?
 
     def set_default_fontsizes(self):
         """Adjust the fontsizes in rcParams to the default values matching the surrounding document."""
