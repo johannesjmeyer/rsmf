@@ -60,3 +60,47 @@ class RevtexLikeFormatter(Formatter):
             and self.columns == other.columns
             and self.paper == other.paper
         )
+
+
+class RevtexLikeParser:
+    def __init__(self, documentclass_identifiers, formatter_class):
+        self.documentclass_identifiers = documentclass_identifiers
+        self.formatter_class = formatter_class
+
+    def __call__(self, preamble):
+        for documentclass_identifier in self.documentclass_identifiers:
+            if documentclass_identifier in preamble:
+                return self.formatter_class(**self._extract_kwargs(preamble))
+
+        return None
+
+    @staticmethod
+    def _extract_kwargs(preamble):
+        """Parse the preamble to extract the informations relevant for plot style.
+
+        Args:
+            preamble (str): The preamble, containing at least the \documentclass command.
+
+        Returns:
+            Dict: formatter_kwargs (columns, paper, fontsize)
+        """
+        formatter_kwargs = {}
+
+        if "onecolumn" in preamble:
+            formatter_kwargs["columns"] = "onecolumn"
+        else:
+            formatter_kwargs["columns"] = "twocolumn"
+
+        if "letterpaper" in preamble:
+            formatter_kwargs["paper"] = "letterpaper"
+        else:
+            formatter_kwargs["paper"] = "a4paper"
+
+        if "11pt" in preamble:
+            formatter_kwargs["fontsize"] = 11
+        elif "12pt" in preamble:
+            formatter_kwargs["fontsize"] = 12
+        else:
+            formatter_kwargs["fontsize"] = 10
+
+        return formatter_kwargs

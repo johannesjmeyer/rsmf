@@ -5,7 +5,7 @@ Support for the quantumarticle documentclass of Quantum journal.
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-from .revtexlike import RevtexLikeFormatter
+from .revtexlike import RevtexLikeFormatter, RevtexLikeParser
 
 
 class QuantumarticleFormatter(RevtexLikeFormatter):
@@ -49,3 +49,6 @@ class QuantumarticleFormatter(RevtexLikeFormatter):
         ] = r"\usepackage{lmodern} \usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
 
         plt.rcParams["axes.edgecolor"] = self._colors["quantumgray"]
+
+
+quantumarticle_parser = RevtexLikeParser(["{quantumarticle}"], QuantumarticleFormatter)

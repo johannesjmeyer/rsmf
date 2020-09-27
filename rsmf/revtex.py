@@ -5,7 +5,7 @@ Support for the revtex4-1 documentclass of the APS journals.
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-from .revtexlike import RevtexLikeFormatter
+from .revtexlike import RevtexLikeFormatter, RevtexLikeParser
 
 
 class RevtexFormatter(RevtexLikeFormatter):
@@ -35,3 +35,6 @@ class RevtexFormatter(RevtexLikeFormatter):
         super().__init__(columns, "a4paper", fontsize)
 
         plt.rcParams["font.family"] = "serif"
+
+
+revtex_parser = RevtexLikeParser(["{revtex4-1}", "{revtex4-2}"], RevtexLikeParser)
