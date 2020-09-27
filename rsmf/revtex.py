@@ -8,9 +8,9 @@ import matplotlib.pyplot as plt
 from .formatters import Formatter
 
 
-class RevtexFormatter:
+class RevtexFormatter(Formatter):
 
-    _documentclass_identifier = "{revtex}"
+    _documentclass_identifier = "{revtex4-1}"
 
     _widths = {
         "onecolumn": {"a4paper": 7.08},
@@ -22,7 +22,7 @@ class RevtexFormatter:
         "twocolumn": {"a4paper": 7.08},
     }
 
-    def __init__(self, columns="twocolumn", fontsize=10):
+    def __init__(self, columns="twocolumn", fontsize=10, **kwargs):
         """Sets up the plot with the fitting arguments so that the font sizes of the plot
         and the font sizes of the document are well aligned.
 
@@ -32,4 +32,5 @@ class RevtexFormatter:
             fontsize (int, optional): the fontsize you used to set up your quantumarticle,
                 either 10, 11 or 12. Defaults to 10.
         """
-        super().__init__(columns, paper, fontsize)
+        super().__init__(columns, "a4paper", fontsize)
+        plt.rcParams["font.family"] = "serif"

@@ -57,26 +57,28 @@ def _parse(preamble):
         preamble (str): The preamble, containing at least the \documentclass command.
 
     Returns:
-        Dict: kwargs for the Formatter (columns, paper, fontsize)
+        Dict: formatter_kwargs (columns, paper, fontsize)
     """
-    kwargs = {}
+    formatter_kwargs = {}
 
     if "onecolumn" in preamble:
-        kwargs["columns"] = "onecolumn"
+        formatter_kwargs["columns"] = "onecolumn"
     else:
-        kwargs["columns"] = "twocolumn"
+        formatter_kwargs["columns"] = "twocolumn"
 
     if "letterpaper" in preamble:
-        kwargs["paper"] = "letterpaper"
+        formatter_kwargs["paper"] = "letterpaper"
     else:
-        kwargs["paper"] = "a4paper"
+        formatter_kwargs["paper"] = "a4paper"
 
     if "11pt" in preamble:
-        kwargs["fontsize"] = 11
+        formatter_kwargs["fontsize"] = 11
     elif "12pt" in preamble:
-        kwargs["fontsize"] = 12
+        formatter_kwargs["fontsize"] = 12
     else:
-        kwargs["fontsize"] = 10
+        formatter_kwargs["fontsize"] = 10
+
+    return formatter_kwargs
 
 
 def setup(arg):
@@ -102,7 +104,7 @@ def setup(arg):
     result = None
     for CustomFormatter in _FORMATTERS:
         if CustomFormatter._documentclass_identifier in preamble:
-            return CustomFormatter(**kwargs)
+            return CustomFormatter(**formatter_kwargs)
 
     raise Exception(
             "No formatter was found for the given argument. This means either there is no formatter, or, if you gave a file path that it does not exist."

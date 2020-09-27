@@ -27,7 +27,7 @@ class QuantumarticleFormatter(Formatter):
         "quantumgray" : "#555555"
     }
 
-    def __init__(self, columns="twocolumn", paper="a4paper", fontsize=10):
+    def __init__(self, columns="twocolumn", paper="a4paper", fontsize=10, **kwargs):
         """Sets up the plot with the fitting arguments so that the font sizes of the plot
         and the font sizes of the document are well aligned.
 
