@@ -35,4 +35,4 @@ class RevtexFormatter(RevtexLikeFormatter):
         plt.rcParams["font.family"] = "serif"
 
 
-revtex_parser = RevtexLikeParser(["{revtex4-1}", "{revtex4-2}"], RevtexLikeParser)
+revtex_parser = RevtexLikeParser(["{revtex4-1}", "{revtex4-2}"], RevtexFormatter)

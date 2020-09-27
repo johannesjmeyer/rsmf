@@ -3,49 +3,47 @@ import numpy as np
 import pytest
 
 from rsmf import setup
-from rsmf.setup import _parse
-from rsmf.revtex import RevtexFormatter
+from rsmf.revtex import RevtexFormatter, revtex_parser
 
 
 class TestParse:
     """Ensure that parsing works as expected."""
 
-    ## no longer needed now that we check Formatter._documentclass_identifier?
-    # @pytest.mark.parametrize(
-    #     "preamble",
-    #     [
-    #         r"\documentclass[10pt,notitlepage,prl]{quantumarticle}",
-    #         r"\documentclass[10pt]{revtex}",
-    #         r"\documentclass[10pt]{REXTEX}",
-    #     ],
-    # )
-    # def test_parse_none(self, preamble):
-    #     """Test that the parser returns None if the preamble is not for quantumarticle."""
-    #     assert parse(preamble) is None
+    @pytest.mark.parametrize(
+        "preamble",
+        [
+            r"\documentclass[10pt,notitlepage,prl]{quantumarticle}",
+            r"\documentclass[10pt]{revtex}",
+            r"\documentclass[10pt]{REXTEX}",
+        ],
+    )
+    def test_parse_none(self, preamble):
+        """Test that the parser returns None if the preamble is not for revtex."""
+        assert revtex_parser(preamble) is None
 
     def test_parse_default(self):
         """Test the default values."""
-        preamble = r"\documentclass{revtex4-1}"
-        formatter_kwargs = _parse(preamble)
+        preamble = r"\documentclass{revtex4-2}"
+        formatter = revtex_parser(preamble)
 
-        assert formatter_kwargs["columns"] == "twocolumn"
-        assert formatter_kwargs["fontsize"] == 10
+        assert formatter.columns == "twocolumn"
+        assert formatter.fontsize == 10
 
     def test_parse_all(self):
         """Test the parsing of all options."""
         preamble = r"\documentclass[onecolumn,unpublished,letterpaper,11pt]{revtex4-1}"
-        formatter_kwargs = _parse(preamble)
+        formatter = revtex_parser(preamble)
 
-        assert formatter_kwargs["columns"] == "onecolumn"
-        assert formatter_kwargs["fontsize"] == 11
+        assert formatter.columns == "onecolumn"
+        assert formatter.fontsize == 11
 
     def test_parse_some(self):
         """Test the parsing if only some options are present."""
         preamble = r"\documentclass[a4paper,12pt,noarxiv]{revtex4-1}"
-        formatter_kwargs = _parse(preamble)
+        formatter = revtex_parser(preamble)
 
-        assert formatter_kwargs["columns"] == "twocolumn"
-        assert formatter_kwargs["fontsize"] == 12
+        assert formatter.columns == "twocolumn"
+        assert formatter.fontsize == 12
 
 
 class TestRcParams:

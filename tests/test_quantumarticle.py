@@ -3,52 +3,50 @@ import numpy as np
 import pytest
 
 from rsmf import setup
-from rsmf.setup import _parse
-from rsmf.quantumarticle import QuantumarticleFormatter
+from rsmf.quantumarticle import QuantumarticleFormatter, quantumarticle_parser
 
 
 class TestParse:
     """Ensure that parsing works as expected."""
 
-    ## no longer needed now that we check Formatter._documentclass_identifier?
-    # @pytest.mark.parametrize(
-    #     "preamble",
-    #     [
-    #         r"\documentclass[10pt,notitlepage,prl]{revtex4-1}",
-    #         r"\documentclass[10pt]{quantumarticles}",
-    #         r"\documentclass[10pt]{Quantumarticle}",
-    #     ],
-    # )
-    # def test_parse_none(self, preamble):
-    #     """Test that the parser returns None if the preamble is not for quantumarticle."""
-    #     assert parse(preamble) is None
+    @pytest.mark.parametrize(
+        "preamble",
+        [
+            r"\documentclass[10pt,notitlepage,prl]{revtex4-1}",
+            r"\documentclass[10pt]{quantumarticles}",
+            r"\documentclass[10pt]{Quantumarticle}",
+        ],
+    )
+    def test_parse_none(self, preamble):
+        """Test that the parser returns None if the preamble is not for quantumarticle."""
+        assert quantumarticle_parser(preamble) is None
 
     def test_parse_default(self):
         """Test the default values."""
         preamble = r"\documentclass{quantumarticle}"
-        formatter_kwargs = _parse(preamble)
+        formatter = quantumarticle_parser(preamble)
 
-        assert formatter_kwargs["paper"] == "a4paper"
-        assert formatter_kwargs["columns"] == "twocolumn"
-        assert formatter_kwargs["fontsize"] == 10
+        assert formatter.paper == "a4paper"
+        assert formatter.columns == "twocolumn"
+        assert formatter.fontsize == 10
 
     def test_parse_all(self):
         """Test the parsing of all options."""
         preamble = r"\documentclass[onecolumn,unpublished,letterpaper,11pt]{quantumarticle}"
-        formatter_kwargs = _parse(preamble)
+        formatter = quantumarticle_parser(preamble)
 
-        assert formatter_kwargs["paper"] == "letterpaper"
-        assert formatter_kwargs["columns"] == "onecolumn"
-        assert formatter_kwargs["fontsize"] == 11
+        assert formatter.paper == "letterpaper"
+        assert formatter.columns == "onecolumn"
+        assert formatter.fontsize == 11
 
     def test_parse_some(self):
         """Test the parsing if only some options are present."""
         preamble = r"\documentclass[a4paper,12pt,noarxiv]{quantumarticle}"
-        formatter_kwargs = _parse(preamble)
+        formatter = quantumarticle_parser(preamble)
 
-        assert formatter_kwargs["paper"] == "a4paper"
-        assert formatter_kwargs["columns"] == "twocolumn"
-        assert formatter_kwargs["fontsize"] == 12
+        assert formatter.paper == "a4paper"
+        assert formatter.columns == "twocolumn"
+        assert formatter.fontsize == 12
 
 
 class TestRcParams:
