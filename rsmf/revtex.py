@@ -33,4 +33,5 @@ class RevtexFormatter(RevtexLikeFormatter):
                 either 10, 11 or 12. Defaults to 10.
         """
         super().__init__(columns, "a4paper", fontsize)
+
         plt.rcParams["font.family"] = "serif"

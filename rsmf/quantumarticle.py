@@ -41,7 +41,11 @@ class QuantumarticleFormatter(RevtexLikeFormatter):
     def set_rcParams(self):
         """Adjust the rcParams to the default values for Quantumarticle."""
         super().set_rcParams()
+
+        plt.rcParams["font.family"] = "sans-serif"
+
         plt.rcParams[
             "pgf.preamble"
         ] = r"\usepackage{lmodern} \usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
+
         plt.rcParams["axes.edgecolor"] = self._colors["quantumgray"]

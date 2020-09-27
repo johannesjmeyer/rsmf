@@ -1,44 +1,34 @@
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+import abc
 
-from .fontsize import Fontsizes10
+from .fontsize import default_fontsizes_10
 
 
-class Formatter:
+class Formatter(abc.ABC):
     """
     Base class for formatter implementations.
     """
 
     def __init__(self):
         """Sets up the plotting environment."""
-        self._widths = None
-        self._wide_widths = None
-        self._fontsizes = Fontsizes10()
+        self._fontsizes = default_fontsizes_10
 
         mpl.use("pgf")
         mpl.style.use("seaborn-white")
         self.set_rcParams()
         # TODO: Make sure set_rcParams is called after the fontsizes in the subclass are adjusted
 
-    @property
+    @abc.abstractproperty
     def width(self):
-        if not self._widths:
-            raise NotImplementedError("width is not implemented in subclass.")
+        raise NotImplementedError("width is not implemented in subclass.")
 
-        return self._widths[self.columns][self.paper]
-
-    @property
+    @abc.abstractproperty
     def wide_width(self):
-        if not self._wide_widths:
-            raise NotImplementedError("wide_width is not implemented in subclass.")
-
-        return self._wide_widths[self.columns][self.paper]
+        raise NotImplementedError("wide_width is not implemented in subclass.")
 
     @property
     def fontsizes(self):
-        if not self._fontsizes:
-            raise NotImplementedError("fontsizes is not implemented in subclass.")
-
         return self._fontsizes
 
     def set_default_fontsizes(self):
@@ -89,10 +79,3 @@ class Formatter:
         height = width * aspect_ratio
 
         return plt.figure(figsize=(width, height), dpi=120, facecolor="white")
-
-    def __eq__(self, other):
-        return (
-            self._fontsizes == other._fontsizes
-            and self._widths == other._widths
-            and self._wide_widths == other._wide_widths
-        )
