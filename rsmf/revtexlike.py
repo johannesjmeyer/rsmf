@@ -48,14 +48,6 @@ class RevtexLikeFormatter(Formatter):
         """Fontsizes as specified by the underlying document."""
         return default_fontsizes[self.fontsize]
 
-    def set_default_fontsizes(self):
-        """Adjust the fontsizes in rcParams to the default values matching the surrounding document."""
-        plt.rcParams["axes.labelsize"] = self.fontsizes.small
-        plt.rcParams["axes.titlesize"] = self.fontsizes.large
-        plt.rcParams["xtick.labelsize"] = self.fontsizes.footnotesize
-        plt.rcParams["ytick.labelsize"] = self.fontsizes.footnotesize
-        plt.rcParams["font.size"] = self.fontsizes.small
-
     def __eq__(self, other):
         return (
             self.fontsize == other.fontsize
