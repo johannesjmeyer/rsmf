@@ -6,6 +6,7 @@ from rsmf import setup
 from rsmf.setup import _parse
 from rsmf.revtex import RevtexFormatter
 
+
 class TestParse:
     """Ensure that parsing works as expected."""
 
