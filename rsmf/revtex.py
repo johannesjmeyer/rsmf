@@ -32,6 +32,10 @@ class RevtexFormatter(RevtexLikeFormatter):
         """
         super().__init__(columns, "a4paper", fontsize)
 
+    def set_rcParams(self):
+        """Adjust the rcParams to the default values for Quantumarticle."""
+        super().set_rcParams()
+
         plt.rcParams["font.family"] = "serif"
 
 
