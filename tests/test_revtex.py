@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pytest
 
-from rsmf.revtex import RevtexFormatter, parse
+from rsmf import setup
+from rsmf.revtex import RevtexFormatter, revtex_parser
 
 
 class TestParse:
@@ -17,15 +18,13 @@ class TestParse:
         ],
     )
     def test_parse_none(self, preamble):
-        """Test that the parser returns None if the preamble is not for quantumarticle."""
-        assert parse(preamble) is None
+        """Test that the parser returns None if the preamble is not for revtex."""
+        assert revtex_parser(preamble) is None
 
     def test_parse_default(self):
         """Test the default values."""
-        preamble = r"\documentclass{revtex4-1}"
-        formatter = parse(preamble)
-
-        assert formatter is not None
+        preamble = r"\documentclass{revtex4-2}"
+        formatter = revtex_parser(preamble)
 
         assert formatter.columns == "twocolumn"
         assert formatter.fontsize == 10
@@ -33,9 +32,7 @@ class TestParse:
     def test_parse_all(self):
         """Test the parsing of all options."""
         preamble = r"\documentclass[onecolumn,unpublished,letterpaper,11pt]{revtex4-1}"
-        formatter = parse(preamble)
-
-        assert formatter is not None
+        formatter = revtex_parser(preamble)
 
         assert formatter.columns == "onecolumn"
         assert formatter.fontsize == 11
@@ -43,9 +40,7 @@ class TestParse:
     def test_parse_some(self):
         """Test the parsing if only some options are present."""
         preamble = r"\documentclass[a4paper,12pt,noarxiv]{revtex4-1}"
-        formatter = parse(preamble)
-
-        assert formatter is not None
+        formatter = revtex_parser(preamble)
 
         assert formatter.columns == "twocolumn"
         assert formatter.fontsize == 12
@@ -56,7 +51,7 @@ class TestRcParams:
 
     def test_rcParams(self):
         preamble = r"\documentclass[a4paper,12pt,noarxiv]{revtex4-1}"
-        formatter = parse(preamble)
+        formatter = setup(preamble)
 
         assert plt.rcParams["axes.labelsize"] == formatter.fontsizes.small
         assert plt.rcParams["axes.titlesize"] == formatter.fontsizes.large

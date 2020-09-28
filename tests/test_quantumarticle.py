@@ -2,7 +2,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pytest
 
-from rsmf.quantumarticle import QuantumarticleFormatter, parse
+from rsmf import setup
+from rsmf.quantumarticle import QuantumarticleFormatter, quantumarticle_parser
 
 
 class TestParse:
@@ -18,14 +19,12 @@ class TestParse:
     )
     def test_parse_none(self, preamble):
         """Test that the parser returns None if the preamble is not for quantumarticle."""
-        assert parse(preamble) is None
+        assert quantumarticle_parser(preamble) is None
 
     def test_parse_default(self):
         """Test the default values."""
         preamble = r"\documentclass{quantumarticle}"
-        formatter = parse(preamble)
-
-        assert formatter is not None
+        formatter = quantumarticle_parser(preamble)
 
         assert formatter.paper == "a4paper"
         assert formatter.columns == "twocolumn"
@@ -34,9 +33,7 @@ class TestParse:
     def test_parse_all(self):
         """Test the parsing of all options."""
         preamble = r"\documentclass[onecolumn,unpublished,letterpaper,11pt]{quantumarticle}"
-        formatter = parse(preamble)
-
-        assert formatter is not None
+        formatter = quantumarticle_parser(preamble)
 
         assert formatter.paper == "letterpaper"
         assert formatter.columns == "onecolumn"
@@ -45,9 +42,7 @@ class TestParse:
     def test_parse_some(self):
         """Test the parsing if only some options are present."""
         preamble = r"\documentclass[a4paper,12pt,noarxiv]{quantumarticle}"
-        formatter = parse(preamble)
-
-        assert formatter is not None
+        formatter = quantumarticle_parser(preamble)
 
         assert formatter.paper == "a4paper"
         assert formatter.columns == "twocolumn"
@@ -59,7 +54,7 @@ class TestRcParams:
 
     def test_rcParams(self):
         preamble = r"\documentclass[a4paper,12pt,noarxiv]{quantumarticle}"
-        formatter = parse(preamble)
+        formatter = setup(preamble)
 
         assert plt.rcParams["axes.labelsize"] == formatter.fontsizes.small
         assert plt.rcParams["axes.titlesize"] == formatter.fontsizes.large
@@ -89,7 +84,7 @@ class TestRcParams:
         assert plt.rcParams["legend.framealpha"] == 1.0
         assert plt.rcParams["legend.fancybox"] == False
 
-        assert plt.rcParams["axes.edgecolor"] == formatter.colors.quantumgray
+        assert plt.rcParams["axes.edgecolor"] == formatter._colors["quantumgray"]
 
 
 class TestFigure:

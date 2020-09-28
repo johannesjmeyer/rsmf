@@ -6,10 +6,10 @@ import re
 import sys
 from pathlib import Path
 
-from .quantumarticle import parse as quantumarticle_parse
-from .revtex import parse as revtex_parse
+from .quantumarticle import quantumarticle_parser
+from .revtex import revtex_parser
 
-_PARSERS = [quantumarticle_parse, revtex_parse]
+_PARSERS = [quantumarticle_parser, revtex_parser]
 
 _comment_regex = re.compile("(%.*)")
 
@@ -74,11 +74,8 @@ def setup(arg):
         result = parser(preamble)
 
         if result:
-            break
+            return result
 
-    if result is None:
-        raise Exception(
-            "No formatter was found for the given argument. This means either there is no formatter, or, if you gave a file path that it does not exist."
-        )
-
-    return result
+    raise Exception(
+        "No formatter was found for the given argument. This means either there is no formatter, or, if you gave a file path that it does not exist."
+    )
