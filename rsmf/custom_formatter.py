@@ -29,7 +29,7 @@ class CustomFormatter(AbstractFormatter):
         self._pgf_preamble = pgf_preamble
 
         self.set_rcParams()
-    
+
     @property
     def width(self):
         return self._width
