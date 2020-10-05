@@ -80,7 +80,7 @@ and included via the multi-column `figure*` environment:
 
 Note that you should always save your figures in some sort of vectorized format, like `pdf` and that calling `plt.tight_layout()` before saving usually makes your plots nicer.
 
-It is also possible to create the figure objects by hand, using `formatter.width` and `formatter.wide_width`, the `formatter.figure` routine is a convenience wrapper around this.
+It is also possible to create the figure objects by hand, using `formatter.columnwidth` and `formatter.wide_columnwidth`, the `formatter.figure` routine is a convenience wrapper around this.
 
 ## Other features
 You can access the underlying fontsizes via `formatter.fontsizes`. The nomenclature follows that of LaTeX itself, so we have e.g. `formatter.fontsizes.tiny` or `formatter.fontsizes.Large`.

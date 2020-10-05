@@ -56,8 +56,8 @@ With these informations at hand, you can invoke ``rsmf``'s ``CustomFormatter``:
     from rsmf import CustomFormatter
 
     formatter = CustomFormatter(
-        width=246 * 0.01389, 
-        wide_width=512 * 0.01389, 
+        columnwidth=246 * 0.01389, 
+        wide_columnwidth=512 * 0.01389, 
         fontsizes=11, 
         pgf_preamble=r"\usepackage{lmodern}",
     )
@@ -115,7 +115,7 @@ Note that you should always save your figures in some sort of vectorized format,
 
 Custom
 ~~~~~~
-If you want more control about the creation of your figure, you can make use of ``formatter.width`` and ``formatter.wide_width`` to create them yourself.
+If you want more control about the creation of your figure, you can make use of ``formatter.columnwidth`` and ``formatter.wide_columnwidth`` to create them yourself.
 
 Other features
 ~~~~~~~~~~~~~~
