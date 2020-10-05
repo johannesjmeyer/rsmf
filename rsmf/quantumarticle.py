@@ -2,7 +2,6 @@
 Support for the quantumarticle documentclass of Quantum journal.
 """
 
-import matplotlib as mpl
 import matplotlib.pyplot as plt
 
 from .revtexlike import RevtexLikeFormatter, RevtexLikeParser

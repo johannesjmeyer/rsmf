@@ -2,7 +2,6 @@ from pathlib import Path
 
 import pytest
 
-import rsmf
 from rsmf.setup import _clean_preamble, _extract_preamble, setup
 
 DUMMY_PATH = Path(__file__).parent / "dummy.tex"

@@ -1,12 +1,9 @@
-from unittest.mock import patch
 
 import matplotlib.pyplot as plt
 import numpy as np
 import pytest
 
-from rsmf import setup
 from rsmf.abstract_formatter import AbstractFormatter
-from rsmf.fontsizes import default_fontsizes_10
 
 
 @pytest.fixture(scope="function")
