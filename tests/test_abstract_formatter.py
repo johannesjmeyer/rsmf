@@ -1,7 +1,8 @@
+from unittest.mock import patch
+
 import matplotlib.pyplot as plt
 import numpy as np
 import pytest
-from unittest.mock import patch
 
 from rsmf import setup
 from rsmf.abstract_formatter import AbstractFormatter

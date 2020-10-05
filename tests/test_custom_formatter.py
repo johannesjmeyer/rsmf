@@ -10,7 +10,7 @@ class TestRcParams:
     """Test that rcParams are properly set."""
 
     def test_rcParams(self):
-        pgf_preamble = r"\usepackage{lmodern}"
+        pgf_preamble = r"\usepackage{times}"
         formatter = CustomFormatter(width=2.4, pgf_preamble=pgf_preamble)
 
         assert plt.rcParams["axes.labelsize"] == formatter.fontsizes.small
