@@ -1,3 +1,7 @@
+"""
+Abstract base class for all formatters.
+"""
+
 import abc
 
 import matplotlib as mpl
