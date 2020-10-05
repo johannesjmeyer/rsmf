@@ -85,7 +85,7 @@ class AbstractFormatter(abc.ABC):
         elif not wide and not self.width:
             raise ValueError("The formatter's width was not set.")
 
-        base_width = (self.wide_width if wide else self.width)
+        base_width = self.wide_width if wide else self.width
 
         width = base_width * width_ratio
         height = width * aspect_ratio

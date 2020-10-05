@@ -12,9 +12,9 @@ from rsmf.fontsizes import default_fontsizes_10
 def abstract_formatter_mock(monkeypatch):
     """A function to create a mock device with non-empty operations"""
     with monkeypatch.context() as m:
-        m.setattr(AbstractFormatter, '__abstractmethods__', frozenset())
-        m.setattr(AbstractFormatter, 'wide_width', None)
-        m.setattr(AbstractFormatter, 'width', None)
+        m.setattr(AbstractFormatter, "__abstractmethods__", frozenset())
+        m.setattr(AbstractFormatter, "wide_width", None)
+        m.setattr(AbstractFormatter, "width", None)
 
         def formatter(**patch_dict):
             fmt = AbstractFormatter()
@@ -26,12 +26,13 @@ def abstract_formatter_mock(monkeypatch):
 
         yield formatter
 
+
 class TestRcParams:
     """Test that rcParams are properly set."""
 
     def test_rcParams(self, abstract_formatter_mock):
         formatter = abstract_formatter_mock()
-    
+
         assert plt.rcParams["axes.labelsize"] == formatter.fontsizes.small
         assert plt.rcParams["axes.titlesize"] == formatter.fontsizes.large
         assert plt.rcParams["xtick.labelsize"] == formatter.fontsizes.footnotesize
@@ -64,13 +65,13 @@ class TestFigure:
         "patch_dict,figure_kwargs,expected_format",
         [
             (
-                {"width": 1.0, "wide_width" : 2.0},
+                {"width": 1.0, "wide_width": 2.0},
                 {"aspect_ratio": 1.0, "width_ratio": 1.0, "wide": False},
                 (1.0, 1.0),
             ),
             (
-                { "width" : 1.0, "wide_width": 2.0},
-                {"aspect_ratio": .5, "width_ratio": 1.0, "wide": True},
+                {"width": 1.0, "wide_width": 2.0},
+                {"aspect_ratio": 0.5, "width_ratio": 1.0, "wide": True},
                 (2.0, 1.0),
             ),
             (
@@ -81,16 +82,17 @@ class TestFigure:
             (
                 {"width": 0.5, "wide_width": 2.0},
                 {"aspect_ratio": 2.0, "width_ratio": 1.0, "wide": False},
-                (.5, 1.0),
+                (0.5, 1.0),
             ),
         ],
     )
-    def test_figure_format(self, abstract_formatter_mock, patch_dict, figure_kwargs, expected_format):
+    def test_figure_format(
+        self, abstract_formatter_mock, patch_dict, figure_kwargs, expected_format
+    ):
         """Assert that the figure output has the correct dimensions."""
         formatter = abstract_formatter_mock(**patch_dict)
         fig = formatter.figure(**figure_kwargs)
         assert np.allclose(fig.get_size_inches(), np.array(expected_format))
-
 
     def test_figure_error_width_not_set(self, abstract_formatter_mock):
         """Assert that the figure method throws the correct errors."""
@@ -98,7 +100,6 @@ class TestFigure:
 
         with pytest.raises(ValueError, match="The formatter's width was not set"):
             formatter.figure(wide=False)
-
 
     def test_figure_error_wide_width_not_set(self, abstract_formatter_mock):
         """Assert that the figure method throws the correct errors."""

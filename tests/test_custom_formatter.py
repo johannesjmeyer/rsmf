@@ -52,7 +52,7 @@ class TestFigure:
             ),
             (
                 {"wide_width": 2.0, "fontsizes": 11},
-                {"aspect_ratio": .5, "width_ratio": 1.0, "wide": True},
+                {"aspect_ratio": 0.5, "width_ratio": 1.0, "wide": True},
                 (2.0, 1.0),
             ),
             (
@@ -63,7 +63,7 @@ class TestFigure:
             (
                 {"width": 0.5, "wide_width": 2.0, "fontsizes": 11},
                 {"aspect_ratio": 2.0, "width_ratio": 1.0, "wide": False},
-                (.5, 1.0),
+                (0.5, 1.0),
             ),
         ],
     )
