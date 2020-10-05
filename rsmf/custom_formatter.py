@@ -16,8 +16,6 @@ class CustomFormatter(AbstractFormatter):
     """
 
     def __init__(self, width=None, wide_width=None, fontsizes=10, pgf_preamble=""):
-        super().__init__()
-
         self._width = width
         self._wide_width = wide_width
 
@@ -28,7 +26,7 @@ class CustomFormatter(AbstractFormatter):
 
         self._pgf_preamble = pgf_preamble
 
-        self.set_rcParams()
+        super().__init__()
 
     @property
     def width(self):
