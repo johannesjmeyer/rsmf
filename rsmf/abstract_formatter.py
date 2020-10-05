@@ -41,7 +41,7 @@ class AbstractFormatter(abc.ABC):
     @property
     def wide_width(self):
         warnings.warn("wide_width is deprecated, use wide_columnwidth instead.")
-        
+
         return self.wide_columnwidth
 
     @property
@@ -95,12 +95,12 @@ class AbstractFormatter(abc.ABC):
         Returns:
             matplotlib.Figure: The matplotlib Figure object
         """
-        if wide and not self.wide_width:
-            raise ValueError("The formatter's wide_width was not set.")
-        elif not wide and not self.width:
-            raise ValueError("The formatter's width was not set.")
+        if wide and not self.wide_columnwidth:
+            raise ValueError("The formatter's wide_columnwidth was not set.")
+        elif not wide and not self.columnwidth:
+            raise ValueError("The formatter's columnwidth was not set.")
 
-        base_width = self.wide_width if wide else self.width
+        base_width = self.wide_columnwidth if wide else self.columnwidth
 
         width = base_width * width_ratio
         height = width * aspect_ratio
