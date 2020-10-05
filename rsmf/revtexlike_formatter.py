@@ -1,8 +1,8 @@
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-from .formatter import AbstractFormatter
-from .fontsize import default_fontsizes
+from .abstract_formatter import AbstractFormatter
+from .fontsizes import default_fontsizes
 
 
 class RevtexLikeFormatter(AbstractFormatter):

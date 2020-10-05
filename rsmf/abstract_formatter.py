@@ -2,7 +2,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 import abc
 
-from .fontsize import default_fontsizes_10
+from .fontsizes import default_fontsizes_10
 
 
 class AbstractFormatter(abc.ABC):
