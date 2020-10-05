@@ -1,4 +1,5 @@
 import matplotlib.pyplot as plt
+
 from .abstract_formatter import AbstractFormatter
 from .fontsizes import default_fontsizes
 
