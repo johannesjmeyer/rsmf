@@ -20,6 +20,7 @@ The package depends on matplotlib's pgf-backend. To be able to use it you need t
 
 # Usage
 
+A detailed account of usage is given in the [docs](https://rsmf.readthedocs.io/en/latest/source/howto.html).
 
 ## Setup
 You need to tell rsmf how you set up your document by invoking `rsmf.setup`. This can be done in two ways. Either, you give rsmf the `\documentclass` string used for setting up the document, as in
@@ -111,7 +112,6 @@ An example document alongside with a notebook for making the plots used can be f
 Under the hood, rsmf sets the matplotlib backend to `pgf`, which allows the use of LaTeX. For each supported document class, the specific column widths and font sizes are stored in code, alongside with packages that are loaded that change fonts. For `quantumarticle`, for example, the package `lmodern` is loaded into the `pgf` backend to get the right sans-serif font. 
 
 When calling `rsmf.setup`, matplotlib's `rcParams` are adjusted to make the fontsizes match the surrounding document. Note that `formatter.figure` does not mess with `rcParams`.
-
 
 # Contribute
 Do you have trouble setting up plots for your favorite document class and it is not supported here? Do not hesitate to make a PR!
