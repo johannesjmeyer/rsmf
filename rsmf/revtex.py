@@ -5,7 +5,7 @@ Support for the revtex4-1 and revtex4-2 documentclasses of the APS journals.
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-from .revtexlike_formatter import RevtexLikeFormatter, RevtexLikeParser
+from .revtexlike import RevtexLikeFormatter, RevtexLikeParser
 
 
 class RevtexFormatter(RevtexLikeFormatter):
