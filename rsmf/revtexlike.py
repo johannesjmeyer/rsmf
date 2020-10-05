@@ -12,8 +12,8 @@ class RevtexLikeFormatter(AbstractFormatter):
     A generic Formatter for revtex-like journals.
 
     Inherited classes should set the following:
-      self._widths
-      self._wide_widths
+      self._columnwidths
+      self._wide_columnwidths
       
     """
 
@@ -36,14 +36,14 @@ class RevtexLikeFormatter(AbstractFormatter):
         super().__init__()
 
     @property
-    def width(self):
-        """Width of the plot."""
-        return self._widths[self.columns][self.paper]
+    def columnwidth(self):
+        """columnwidth of the document."""
+        return self._columnwidths[self.columns][self.paper]
 
     @property
-    def wide_width(self):
-        """Wide width of the plot."""
-        return self._wide_widths[self.columns][self.paper]
+    def wide_columnwidth(self):
+        """Wide columnwidth of the document."""
+        return self._wide_columnwidths[self.columns][self.paper]
 
     @property
     def fontsizes(self):
@@ -89,7 +89,7 @@ class RevtexLikeParser:
 
     @staticmethod
     def _extract_kwargs(preamble):
-        """Parse the preamble to extract the informations relevant for plot style.
+        r"""Parse the preamble to extract the informations relevant for plot style.
 
         Args:
             preamble (str): The preamble, containing at least the \documentclass command.

@@ -13,15 +13,15 @@ class CustomFormatter(AbstractFormatter):
     Allows to use rsmf even if the intended document class is not supported.
 
     Args:
-        width (float, optional): Width of a single column (figure) plot in inches. Defaults to None.
-        wide_width (float, optional): Width of a two column (figure*) plot in inches. Defaults to width.
+        columnwidth (float, optional): Width of a single column (figure) plot in inches. Defaults to None.
+        wide_columnwidth (float, optional): Width of a two column (figure*) plot in inches. Defaults to width.
         fontsizes (Union[int,Fontsizes], optional): Latex base fontsize or Fontsizes object. Defaults to 10.
         pgf_preamble (str, optional): Additional packages to include in the PGF preamble, e.g. for exchanging fonts or defining commands. Defaults to "".
     """
 
-    def __init__(self, width=None, wide_width=None, fontsizes=10, pgf_preamble=""):
-        self._width = width
-        self._wide_width = wide_width
+    def __init__(self, columnwidth=None, wide_columnwidth=None, fontsizes=10, pgf_preamble=""):
+        self._columnwidth = columnwidth
+        self._wide_columnwidth = wide_columnwidth
 
         if isinstance(fontsizes, int):
             self._fontsizes = default_fontsizes[fontsizes]
@@ -33,12 +33,12 @@ class CustomFormatter(AbstractFormatter):
         super().__init__()
 
     @property
-    def width(self):
-        return self._width
+    def columnwidth(self):
+        return self._columnwidth
 
     @property
-    def wide_width(self):
-        return self._wide_width
+    def wide_columnwidth(self):
+        return self._wide_columnwidth
 
     @property
     def fontsizes(self):

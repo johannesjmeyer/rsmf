@@ -3,6 +3,7 @@ Abstract base class for all formatters.
 """
 
 import abc
+import warnings
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -24,14 +25,24 @@ class AbstractFormatter(abc.ABC):
         self.set_rcParams()
         # TODO: Make sure set_rcParams is called after the fontsizes in the subclass are adjusted
 
-    # TODO: Adjust names to columnwidth and wide_columnwidth, advertise as part of API
     @abc.abstractproperty
+    def columnwidth(self):
+        raise NotImplementedError("columnwidth is not implemented in subclass.")
+
     def width(self):
-        raise NotImplementedError("width is not implemented in subclass.")
+        warnings.warn("width is deprecated, use columnwidth instead.")
+
+        return self.columnwidth
 
     @abc.abstractproperty
+    def wide_columnwidth(self):
+        raise NotImplementedError("wide_columnwidth is not implemented in subclass.")
+
+    @property
     def wide_width(self):
-        raise NotImplementedError("wide_width is not implemented in subclass.")
+        warnings.warn("wide_width is deprecated, use wide_columnwidth instead.")
+
+        return self.wide_columnwidth
 
     @property
     def fontsizes(self):
@@ -72,7 +83,7 @@ class AbstractFormatter(abc.ABC):
         plt.rcParams["legend.fancybox"] = False
 
     def figure(self, aspect_ratio=1 / 1.62, width_ratio=1.0, wide=False):
-        """Sets up the plot with the fitting arguments so that the font sizes of the plot
+        r"""Sets up the plot with the fitting arguments so that the font sizes of the plot
         and the font sizes of the document are well aligned.
 
         Args:
@@ -84,12 +95,12 @@ class AbstractFormatter(abc.ABC):
         Returns:
             matplotlib.Figure: The matplotlib Figure object
         """
-        if wide and not self.wide_width:
-            raise ValueError("The formatter's wide_width was not set.")
-        elif not wide and not self.width:
-            raise ValueError("The formatter's width was not set.")
+        if wide and not self.wide_columnwidth:
+            raise ValueError("The formatter's wide_columnwidth was not set.")
+        elif not wide and not self.columnwidth:
+            raise ValueError("The formatter's columnwidth was not set.")
 
-        base_width = self.wide_width if wide else self.width
+        base_width = self.wide_columnwidth if wide else self.columnwidth
 
         width = base_width * width_ratio
         height = width * aspect_ratio

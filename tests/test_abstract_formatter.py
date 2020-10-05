@@ -10,8 +10,8 @@ def abstract_formatter_mock(monkeypatch):
     """A function to create a mock formatter"""
     with monkeypatch.context() as m:
         m.setattr(AbstractFormatter, "__abstractmethods__", frozenset())
-        m.setattr(AbstractFormatter, "wide_width", None)
-        m.setattr(AbstractFormatter, "width", None)
+        m.setattr(AbstractFormatter, "wide_columnwidth", None)
+        m.setattr(AbstractFormatter, "columnwidth", None)
 
         def formatter(**patch_dict):
             fmt = AbstractFormatter()
@@ -62,22 +62,22 @@ class TestFigure:
         "patch_dict,figure_kwargs,expected_format",
         [
             (
-                {"width": 1.0, "wide_width": 2.0},
+                {"columnwidth": 1.0, "wide_columnwidth": 2.0},
                 {"aspect_ratio": 1.0, "width_ratio": 1.0, "wide": False},
                 (1.0, 1.0),
             ),
             (
-                {"width": 1.0, "wide_width": 2.0},
+                {"columnwidth": 1.0, "wide_columnwidth": 2.0},
                 {"aspect_ratio": 0.5, "width_ratio": 1.0, "wide": True},
                 (2.0, 1.0),
             ),
             (
-                {"width": 1.0, "wide_width": 2.0},
+                {"columnwidth": 1.0, "wide_columnwidth": 2.0},
                 {"aspect_ratio": 1.0, "width_ratio": 1.0, "wide": True},
                 (2.0, 2.0),
             ),
             (
-                {"width": 0.5, "wide_width": 2.0},
+                {"columnwidth": 0.5, "wide_columnwidth": 2.0},
                 {"aspect_ratio": 2.0, "width_ratio": 1.0, "wide": False},
                 (0.5, 1.0),
             ),
@@ -93,14 +93,14 @@ class TestFigure:
 
     def test_figure_error_width_not_set(self, abstract_formatter_mock):
         """Assert that the figure method throws the correct errors."""
-        formatter = abstract_formatter_mock(width=None, wide_width=1.0)
+        formatter = abstract_formatter_mock(columnwidth=None, wide_columnwidth=1.0)
 
-        with pytest.raises(ValueError, match="The formatter's width was not set"):
+        with pytest.raises(ValueError, match="The formatter's columnwidth was not set"):
             formatter.figure(wide=False)
 
-    def test_figure_error_wide_width_not_set(self, abstract_formatter_mock):
+    def test_figure_error_wide_columnwidth_not_set(self, abstract_formatter_mock):
         """Assert that the figure method throws the correct errors."""
-        formatter = abstract_formatter_mock(width=1.0, wide_width=None)
+        formatter = abstract_formatter_mock(columnwidth=1.0, wide_columnwidth=None)
 
-        with pytest.raises(ValueError, match="The formatter's wide_width was not set"):
+        with pytest.raises(ValueError, match="The formatter's wide_columnwidth was not set"):
             formatter.figure(wide=True)
