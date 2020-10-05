@@ -83,7 +83,7 @@ class AbstractFormatter(abc.ABC):
         plt.rcParams["legend.fancybox"] = False
 
     def figure(self, aspect_ratio=1 / 1.62, width_ratio=1.0, wide=False):
-        """Sets up the plot with the fitting arguments so that the font sizes of the plot
+        r"""Sets up the plot with the fitting arguments so that the font sizes of the plot
         and the font sizes of the document are well aligned.
 
         Args:

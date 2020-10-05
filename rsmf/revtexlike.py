@@ -89,7 +89,7 @@ class RevtexLikeParser:
 
     @staticmethod
     def _extract_kwargs(preamble):
-        """Parse the preamble to extract the informations relevant for plot style.
+        r"""Parse the preamble to extract the informations relevant for plot style.
 
         Args:
             preamble (str): The preamble, containing at least the \documentclass command.

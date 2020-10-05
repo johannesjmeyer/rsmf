@@ -10,7 +10,7 @@ class TestRcParams:
 
     def test_rcParams(self):
         pgf_preamble = r"\usepackage{times}"
-        formatter = CustomFormatter(width=2.4, pgf_preamble=pgf_preamble)
+        formatter = CustomFormatter(columnwidth=2.4, pgf_preamble=pgf_preamble)
 
         assert plt.rcParams["axes.labelsize"] == formatter.fontsizes.small
         assert plt.rcParams["axes.titlesize"] == formatter.fontsizes.large
@@ -45,22 +45,22 @@ class TestFigure:
         "paper_kwargs,figure_kwargs,expected_format",
         [
             (
-                {"width": 1.0, "fontsizes": 11},
+                {"columnwidth": 1.0, "fontsizes": 11},
                 {"aspect_ratio": 1.0, "width_ratio": 1.0, "wide": False},
                 (1.0, 1.0),
             ),
             (
-                {"wide_width": 2.0, "fontsizes": 11},
+                {"wide_columnwidth": 2.0, "fontsizes": 11},
                 {"aspect_ratio": 0.5, "width_ratio": 1.0, "wide": True},
                 (2.0, 1.0),
             ),
             (
-                {"width": 1.0, "wide_width": 2.0, "fontsizes": 11},
+                {"columnwidth": 1.0, "wide_columnwidth": 2.0, "fontsizes": 11},
                 {"aspect_ratio": 1.0, "width_ratio": 1.0, "wide": True},
                 (2.0, 2.0),
             ),
             (
-                {"width": 0.5, "wide_width": 2.0, "fontsizes": 11},
+                {"columnwidth": 0.5, "wide_columnwidth": 2.0, "fontsizes": 11},
                 {"aspect_ratio": 2.0, "width_ratio": 1.0, "wide": False},
                 (0.5, 1.0),
             ),
