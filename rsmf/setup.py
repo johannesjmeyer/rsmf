@@ -3,7 +3,6 @@ Main routines to invoke the module from code.
 """
 
 import re
-import sys
 from pathlib import Path
 
 from .quantumarticle import quantumarticle_parser

@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-version = "0.1"
+version = "0.2"
 
 requirements = [
     "matplotlib",

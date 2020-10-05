@@ -24,7 +24,7 @@ copyright = "2020, Johannes Jakob Meyer"
 author = "Johannes Jakob Meyer"
 
 # The full version, including alpha/beta/rc tags
-release = "0.1"
+release = "0.2"
 
 
 # -- General configuration ---------------------------------------------------
@@ -61,3 +61,5 @@ html_static_path = ["_static"]
 
 
 master_doc = "index"
+
+html_sidebars = { '**': ['globaltoc.html', 'relations.html', 'sourcelink.html', 'searchbox.html'] }

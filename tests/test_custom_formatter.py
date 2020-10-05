@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pytest
 
-from rsmf import setup
 from rsmf.custom_formatter import CustomFormatter
 
 

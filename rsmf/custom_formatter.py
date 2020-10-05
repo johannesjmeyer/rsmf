@@ -1,3 +1,7 @@
+"""
+Custom formatter that can be used if the intended document class is not supported.
+"""
+
 import matplotlib.pyplot as plt
 
 from .abstract_formatter import AbstractFormatter

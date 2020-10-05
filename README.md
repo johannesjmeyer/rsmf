@@ -3,7 +3,7 @@
 # rsmf (right-size my figures)
 
 When I am writing a paper I am a bit picky about the figures. It is especially important for me that the fonts and font sizes match the surrounding document. As I usually plot with matplotlib I created this library to help with that. This library provides a means to 
-automatically adjust figure sizes and font sizes in matplotlib to fit the ones in commonly used scientific journals. Currently `quantumarticle` and `revtex4-1` are supported. 
+automatically adjust figure sizes and font sizes in matplotlib to fit the ones in commonly used scientific journals. Currently `quantumarticle` and `revtex4` are supported. 
 
 # Install
 
@@ -16,10 +16,11 @@ To get the latest development version you have to install the package from GitHu
 pip install git+https://www.github.com/johannesjmeyer/rsmf
 ```
 
-The package depends on matplotlib's pgf-backend. To be able to use it you need to have a working TeX distribution with `pdflatex` installed (see further [Issue #2](https://github.com/johannesjmeyer/rsmf/issues/2)).
+The package depends on matplotlib's PGF backend. To be able to use it, you need to have a working TeX distribution with `pdflatex` installed (see further [Issue #2](https://github.com/johannesjmeyer/rsmf/issues/2)).
 
 # Usage
 
+A detailed explanation of usage is given in the [docs](https://rsmf.readthedocs.io/en/latest/source/howto.html).
 
 ## Setup
 You need to tell rsmf how you set up your document by invoking `rsmf.setup`. This can be done in two ways. Either, you give rsmf the `\documentclass` string used for setting up the document, as in
@@ -33,6 +34,8 @@ you can just supply rsmf with the path to your main tex file (the one containing
 formatter = rsmf.setup("example.tex")
 ```
 This is especially cool because rsmf will automatically adjust the plots when the underlying document class is changed without any needs to change python code! This makes swapping journals a lot easier.
+
+If the document class you're targeting is not supported by `rsmf`, you can still use it. In that case you have to extract the relevant measurements yourself and use `rsmf.CustomFormatter`. A detailed explanation is given in the [docs](https://rsmf.readthedocs.io/en/latest/source/howto.html).
 
 ## Figures
 The setup routine will return a formatter. This formatter can then be used to create matplotlib figure objects by invoking the method `formatter.figure`. It has three arguments:
@@ -77,24 +80,14 @@ and included via the multi-column `figure*` environment:
 
 Note that you should always save your figures in some sort of vectorized format, like `pdf` and that calling `plt.tight_layout()` before saving usually makes your plots nicer.
 
+It is also possible to create the figure objects by hand, using `formatter.width` and `formatter.wide_width`, the `formatter.figure` routine is a convenience wrapper around this.
+
 ## Other features
-You can access the underlying fontsizes via `formatter.fontsizes`. The nomenclature follows that of LaTeX itself, so we have 
-```python
-formatter.fontsizes.tiny
-formatter.fontsizes.scriptsize
-formatter.fontsizes.footnotesize
-formatter.fontsizes.small
-formatter.fontsizes.normalsize
-formatter.fontsizes.large
-formatter.fontsizes.Large
-formatter.fontsizes.LARGE
-formatter.fontsizes.huge
-formatter.fontsizes.Huge
-```
-This is especially useful if you want to tweak titles, legends and annotations while still having proper (LaTeX) fontsizes.
+You can access the underlying fontsizes via `formatter.fontsizes`. The nomenclature follows that of LaTeX itself, so we have e.g. `formatter.fontsizes.tiny` or `formatter.fontsizes.Large`.
+This is especially useful if you want to tweak titles, legends and annotations while still having matching fontsizes.
 
 ## Using rsmf with other frameworks
-You can use rsmf together with your favorite plotting framework, for example `seaborn`. There is only one catch: if you use matplotlib styles or seaborn styles, you might overwrite the settings imposed by rsmf, especially regarding font-size. To this end, the formatters have a method `formatter.set_default_fontsizes` that only change the underlying fontsizes. An example use would be
+You can use rsmf together with your favorite plotting framework, for example `seaborn`. There is only one catch: if you use matplotlib styles or seaborn styles, you might overwrite the settings imposed by rsmf, especially regarding fontsize. To this end, the formatters have a method `formatter.set_default_fontsizes` that only change the underlying fontsizes. An example use would be
 ```python
 fig = formatter.figure(wide=True)
 sns.set(style="ticks")
@@ -111,7 +104,6 @@ An example document alongside with a notebook for making the plots used can be f
 Under the hood, rsmf sets the matplotlib backend to `pgf`, which allows the use of LaTeX. For each supported document class, the specific column widths and font sizes are stored in code, alongside with packages that are loaded that change fonts. For `quantumarticle`, for example, the package `lmodern` is loaded into the `pgf` backend to get the right sans-serif font. 
 
 When calling `rsmf.setup`, matplotlib's `rcParams` are adjusted to make the fontsizes match the surrounding document. Note that `formatter.figure` does not mess with `rcParams`.
-
 
 # Contribute
 Do you have trouble setting up plots for your favorite document class and it is not supported here? Do not hesitate to make a PR!

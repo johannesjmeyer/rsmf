@@ -1,5 +1,7 @@
-import matplotlib as mpl
-import matplotlib.pyplot as plt
+"""
+Base for implementations of document classes alike to revtex.
+"""
+
 
 from .abstract_formatter import AbstractFormatter
 from .fontsizes import default_fontsizes
@@ -57,13 +59,14 @@ class RevtexLikeFormatter(AbstractFormatter):
 
 
 class RevtexLikeParser:
-    def __init__(self, documentclass_identifiers, formatter_class):
-        """Initializes the parser.
+    """Generic parser for revtex-like document classes.
 
-        Args:
-            documentclass_identifiers (List[string]): Strings identifying the supported document class.
-            formatter_class (class): Class object describing the formatter.
-        """
+    Args:
+        documentclass_identifiers (List[string]): Strings identifying the supported document class.
+        formatter_class (class): Class object describing the formatter.
+    """
+
+    def __init__(self, documentclass_identifiers, formatter_class):
         self.documentclass_identifiers = documentclass_identifiers
         self.formatter_class = formatter_class
 

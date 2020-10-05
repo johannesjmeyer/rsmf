@@ -10,6 +10,7 @@ Welcome to rsmf's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   source/howto
    source/rsmf
 
 
