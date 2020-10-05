@@ -10,7 +10,7 @@ from rsmf.fontsizes import default_fontsizes_10
 
 @pytest.fixture(scope="function")
 def abstract_formatter_mock(monkeypatch):
-    """A function to create a mock device with non-empty operations"""
+    """A function to create a mock formatter"""
     with monkeypatch.context() as m:
         m.setattr(AbstractFormatter, "__abstractmethods__", frozenset())
         m.setattr(AbstractFormatter, "wide_width", None)
@@ -59,7 +59,7 @@ class TestRcParams:
 
 
 class TestFigure:
-    """Test that the constructed figures have the proper dimensions."""
+    """Test the figure method."""
 
     @pytest.mark.parametrize(
         "patch_dict,figure_kwargs,expected_format",
