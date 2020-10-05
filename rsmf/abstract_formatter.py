@@ -80,7 +80,14 @@ class AbstractFormatter(abc.ABC):
         Returns:
             matplotlib.Figure: The matplotlib Figure object
         """
-        width = (self.wide_width if wide else self.width) * width_ratio
+        if wide and not self.wide_width:
+            raise ValueError("The formatter's wide_width was not set.")
+        elif not wide and not self.width:
+            raise ValueError("The formatter's width was not set.")
+
+        base_width = (self.wide_width if wide else self.width)
+
+        width = base_width * width_ratio
         height = width * aspect_ratio
 
         return plt.figure(figsize=(width, height), dpi=120, facecolor="white")
