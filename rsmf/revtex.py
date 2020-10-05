@@ -18,12 +18,12 @@ class RevtexFormatter(RevtexLikeFormatter):
             either 10, 11 or 12. Defaults to 10.
     """
 
-    _widths = {
+    _columnwidths = {
         "onecolumn": {"a4paper": 3.42},
         "twocolumn": {"a4paper": 3.42},
     }
 
-    _wide_widths = {
+    _wide_columnwidths = {
         "onecolumn": {"a4paper": 7.08},
         "twocolumn": {"a4paper": 7.08},
     }

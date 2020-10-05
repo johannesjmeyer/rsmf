@@ -20,12 +20,12 @@ class QuantumarticleFormatter(RevtexLikeFormatter):
             either 10, 11 or 12. Defaults to 10.
     """
 
-    _widths = {
+    _columnwidths = {
         "onecolumn": {"a4paper": 5.93, "letterpaper": 6.16},
         "twocolumn": {"a4paper": 3.22, "letterpaper": 3.34},
     }
 
-    _wide_widths = {
+    _wide_columnwidths = {
         "onecolumn": {"a4paper": 5.93, "letterpaper": 6.16},
         "twocolumn": {"a4paper": 6.72, "letterpaper": 6.95},
     }

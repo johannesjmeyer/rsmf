@@ -3,6 +3,7 @@ Abstract base class for all formatters.
 """
 
 import abc
+import warnings
 
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -24,14 +25,24 @@ class AbstractFormatter(abc.ABC):
         self.set_rcParams()
         # TODO: Make sure set_rcParams is called after the fontsizes in the subclass are adjusted
 
-    # TODO: Adjust names to columnwidth and wide_columnwidth, advertise as part of API
     @abc.abstractproperty
+    def columnwidth(self):
+        raise NotImplementedError("columnwidth is not implemented in subclass.")
+
     def width(self):
-        raise NotImplementedError("width is not implemented in subclass.")
+        warnings.warn("width is deprecated, use columnwidth instead.")
+
+        return self.columnwidth
 
     @abc.abstractproperty
+    def wide_columnwidth(self):
+        raise NotImplementedError("wide_columnwidth is not implemented in subclass.")
+
+    @property
     def wide_width(self):
-        raise NotImplementedError("wide_width is not implemented in subclass.")
+        warnings.warn("wide_width is deprecated, use wide_columnwidth instead.")
+        
+        return self.wide_columnwidth
 
     @property
     def fontsizes(self):
