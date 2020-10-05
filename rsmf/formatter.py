@@ -5,7 +5,7 @@ import abc
 from .fontsize import default_fontsizes_10
 
 
-class Formatter(abc.ABC):
+class AbstractFormatter(abc.ABC):
     """
     Base class for formatter implementations.
     """

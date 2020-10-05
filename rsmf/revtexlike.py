@@ -1,11 +1,11 @@
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-from .formatter import Formatter
+from .formatter import AbstractFormatter
 from .fontsize import default_fontsizes
 
 
-class RevtexLikeFormatter(Formatter):
+class RevtexLikeFormatter(AbstractFormatter):
     """
     A generic Formatter for revtex-like journals.
 

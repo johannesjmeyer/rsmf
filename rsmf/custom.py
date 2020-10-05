@@ -1,9 +1,9 @@
 import matplotlib.pyplot as plt
-from .formatter import Formatter
+from .formatter import AbstractFormatter
 from .fontsize import default_fontsizes
 
 
-class CustomFormatter(Formatter):
+class CustomFormatter(AbstractFormatter):
     """
     Allows to use rsmf even if the intended document class is not supported.
 
