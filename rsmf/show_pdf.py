@@ -1,6 +1,8 @@
 """
 Add convenience methods to show PDFs in Jupyter Notebook.
 """
+
+
 class PDF(object):
     """
     Provides a wrapper around a PDF file path that can be displayed in Jupyter Notebooks.
@@ -14,6 +16,7 @@ class PDF(object):
         height ([type], optional): Height of the displayed PDF's iframe. 
             Considered as pixels when integer, and as CSS compatible height measurement when string. Defaults to 300px.
     """
+
     def __init__(self, pdf_path, width=None, height=None):
         self.pdf_path = pdf_path
 
@@ -32,10 +35,13 @@ class PDF(object):
             self.height_str = "300px"
 
     def _repr_html_(self):
-        return '<iframe src={0} style="position: relative; height: {1}; width: {2};"></iframe>'.format(self.pdf_path, self.width_str, self.height_str)
+        return '<iframe src={0} style="position: relative; height: {1}; width: {2};"></iframe>'.format(
+            self.pdf_path, self.width_str, self.height_str
+        )
 
     def _repr_latex_(self):
-        return r'\includegraphics[width=1.0\columnwidth]{{{0}}}'.format(self.pdf_path)
+        return r"\includegraphics[width=1.0\columnwidth]{{{0}}}".format(self.pdf_path)
+
 
 def show(pdf_path, width=None, height=None):
     """
@@ -52,4 +58,3 @@ def show(pdf_path, width=None, height=None):
         PDF: A wrapper around the the PDF file's path that renders as an iframe in Jupyter Notebook.
     """
     return PDF(pdf_path, width=width, height=height)
-
