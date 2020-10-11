@@ -1,24 +1,35 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@0.2.1
+  python: circleci/python@1.2.0
 
 jobs:
   build-and-test:
     executor: python/default
     steps:
       - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
+      - python/install-packages:
+          pkg-manager: pip
+      - python/install-packages:
+          args: -e .
+          pkg-manager: pip
+      - python/install-packages:
+          args: pytest
+          pkg-manager: pip
+          pypi-cache: false
       - run:
-          command: pip install pytest
-          name: Set up test suite
+          command: |
+            pytest --version
+          name: Print pytest version
+  test:
+    executor: python/default
+    steps:
       - run:
           command: python -m pytest .
-          name: Test
+          name: Run unit tests
 
 workflows:
   main:
     jobs:
       - build-and-test
+
