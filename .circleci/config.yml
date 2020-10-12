@@ -4,7 +4,7 @@ orbs:
   python: circleci/python@1.2.0
 
 jobs:
-  build-and-test:
+  build:
     executor: python/default
     steps:
       - checkout
@@ -14,13 +14,19 @@ jobs:
           args: -e .
           pkg-manager: pip
       - python/install-packages:
-          args: pytest
+          args: pytest pylint
           pkg-manager: pip
           pypi-cache: false
       - run:
           command: |
             pytest --version
           name: Print pytest version
+  lint:
+    executor: python/default
+    steps:
+      - run:
+          command: pylint rsmf/ tests/
+          name: Run pylin
   test:
     executor: python/default
     steps:
@@ -31,5 +37,7 @@ jobs:
 workflows:
   main:
     jobs:
-      - build-and-test
+      - build
+      - lint
+      - test
 
