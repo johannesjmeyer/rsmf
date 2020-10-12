@@ -14,7 +14,7 @@ jobs:
           args: -e .
           pkg-manager: pip
       - python/install-packages:
-          args: pytest pylint
+          args: pytest pylint black
           pkg-manager: pip
           pypi-cache: false
       - run:
@@ -34,7 +34,16 @@ jobs:
           at: ~/
       - run:
           command: python -m pylint rsmf/ tests/
-          name: Run pylin
+          name: Run pylint
+  black:
+    working_directory: ~/project
+    executor: python/default
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          command: python -m black --check rsmf/ tests/
+          name: Run black
   test:
     working_directory: ~/project
     executor: python/default
