@@ -38,6 +38,10 @@ workflows:
   main:
     jobs:
       - build
-      - lint
-      - test
+      - lint:
+          requires:
+            - build
+      - test:
+          requires:
+            - build
 
