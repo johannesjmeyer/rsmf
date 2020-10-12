@@ -12,6 +12,9 @@ jobs:
       - python/install-deps
       - python/save-cache
       - run:
+          command: pip install pytest
+          name: Set up test suite
+      - run:
           command: python -m pytest .
           name: Test
 
