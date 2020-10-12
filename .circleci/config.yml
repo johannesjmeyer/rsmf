@@ -5,7 +5,6 @@ orbs:
 
 jobs:
   build:
-    working_directory: ~/rsmf
     executor: python/default
     steps:
       - checkout
@@ -25,9 +24,9 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - "rsmf"
+            - "project"
   lint:
-    working_directory: ~/rsmf
+    working_directory: ~/project
     executor: python/default
     steps:
       - attach_workspace:
@@ -36,7 +35,7 @@ jobs:
           command: pylint rsmf/ tests/
           name: Run pylin
   test:
-    working_directory: ~/rsmf
+    working_directory: ~/project
     executor: python/default
     steps:
       - attach_workspace:
