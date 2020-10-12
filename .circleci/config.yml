@@ -25,6 +25,7 @@ jobs:
           root: ~/
           paths:
             - "project"
+            - ".pyenv"
   lint:
     working_directory: ~/project
     executor: python/default
@@ -32,7 +33,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          command: pylint rsmf/ tests/
+          command: python -m pylint rsmf/ tests/
           name: Run pylin
   test:
     working_directory: ~/project
