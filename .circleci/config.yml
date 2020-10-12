@@ -5,6 +5,7 @@ orbs:
 
 jobs:
   build:
+    working_directory: ~/rsmf
     executor: python/default
     steps:
       - checkout
@@ -21,15 +22,25 @@ jobs:
           command: |
             pytest --version
           name: Print pytest version
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - "rsmf"
   lint:
+    working_directory: ~/rsmf
     executor: python/default
     steps:
+      - attach_workspace:
+          at: ~/
       - run:
           command: pylint rsmf/ tests/
           name: Run pylin
   test:
+    working_directory: ~/rsmf
     executor: python/default
     steps:
+      - attach_workspace:
+          at: ~/
       - run:
           command: python -m pytest .
           name: Run unit tests
