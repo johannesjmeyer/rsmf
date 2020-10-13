@@ -39,7 +39,7 @@ jobs:
           pkg-manager: pip
           pypi-cache: false
       - run:
-          command: python -m black --check rsmf/ tests/
+          command: python -m black -l 100 --check rsmf/ tests/
           name: Run black
   test:
     working_directory: ~/project
