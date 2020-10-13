@@ -50,6 +50,9 @@ jobs:
       - run:
           command: coverage run -m pytest .
           name: Run unit tests
+      - run:
+          command: coverage html
+          name: Generate html coverage data
       - store_artifacts:
           path: htmlcov
           destination: coverage
