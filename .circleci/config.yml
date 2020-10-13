@@ -48,7 +48,7 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          command: coverage run -m pytest .
+          command: coverage run -m pytest --junitxml=/tmp/reports/pytest-report.xml .
           name: Run unit tests
       - run:
           command: coverage html
@@ -56,6 +56,8 @@ jobs:
       - store_artifacts:
           path: htmlcov
           destination: coverage
+      - store_test_results:
+          path: /tmp/reports
 
 
 workflows:
