@@ -13,10 +13,6 @@ jobs:
       - python/install-packages:
           args: -e .
           pkg-manager: pip
-      - python/install-packages:
-          args: pytest pylint black
-          pkg-manager: pip
-          pypi-cache: false
       - run:
           command: |
             pytest --version
@@ -27,20 +23,24 @@ jobs:
             - "project"
             - ".pyenv"
   lint:
-    working_directory: ~/project
     executor: python/default
     steps:
-      - attach_workspace:
-          at: ~/
+      - checkout
+      - python/install-packages:
+          args: pylint
+          pkg-manager: pip
+          pypi-cache: false
       - run:
           command: python -m pylint rsmf/ tests/
           name: Run pylint
   black:
-    working_directory: ~/project
     executor: python/default
     steps:
-      - attach_workspace:
-          at: ~/
+      - checkout
+      - python/install-packages:
+          args: black
+          pkg-manager: pip
+          pypi-cache: false
       - run:
           command: python -m black --check rsmf/ tests/
           name: Run black
@@ -48,6 +48,10 @@ jobs:
     working_directory: ~/project
     executor: python/default
     steps:
+      - python/install-packages:
+          args: pytest
+          pkg-manager: pip
+          pypi-cache: false
       - attach_workspace:
           at: ~/
       - run:
@@ -58,12 +62,8 @@ workflows:
   main:
     jobs:
       - build
-      - lint:
-          requires:
-            - build
-      - black:
-          requires:
-            - build
+      - lint
+      - black
       - test:
           requires:
             - build
