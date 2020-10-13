@@ -10,7 +10,7 @@ jobs:
       - checkout
       - python/install-packages:
           pkg-manager: pip
-          args: pytest
+          args: pytest coverage
       - python/install-packages:
           args: -e .
           pkg-manager: pip
@@ -48,8 +48,12 @@ jobs:
       - attach_workspace:
           at: ~/
       - run:
-          command: python -m pytest .
+          command: coverage run -m pytest .
           name: Run unit tests
+      - store_artifacts:
+          path: htmlcov
+          destination: coverage
+
 
 workflows:
   main:
