@@ -13,10 +13,6 @@ jobs:
       - python/install-packages:
           args: -e .
           pkg-manager: pip
-      - run:
-          command: |
-            pytest --version
-          name: Print pytest version
       - persist_to_workspace:
           root: ~/
           paths:
