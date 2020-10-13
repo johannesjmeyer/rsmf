@@ -1,24 +1,72 @@
 version: 2.1
 
 orbs:
-  python: circleci/python@0.2.1
+  python: circleci/python@1.2.0
 
 jobs:
-  build-and-test:
+  build:
     executor: python/default
     steps:
       - checkout
-      - python/load-cache
-      - python/install-deps
-      - python/save-cache
+      - python/install-packages:
+          pkg-manager: pip
+          args: pytest coverage
+      - python/install-packages:
+          args: -e .
+          pkg-manager: pip
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - "project"
+            - ".pyenv"
+  lint:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-packages:
+          args: pylint
+          pkg-manager: pip
+          pypi-cache: false
       - run:
-          command: pip install pytest
-          name: Set up test suite
+          command: python -m pylint rsmf/ tests/
+          name: Run pylint
+  black:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-packages:
+          args: black
+          pkg-manager: pip
+          pypi-cache: false
       - run:
-          command: python -m pytest .
-          name: Test
+          command: python -m black -l 100 --check rsmf/ tests/
+          name: Run black
+  test:
+    working_directory: ~/project
+    executor: python/default
+    steps:
+      - attach_workspace:
+          at: ~/
+      - run:
+          command: coverage run -m pytest --junitxml=/tmp/reports/pytest-report.xml .
+          name: Run unit tests
+      - run:
+          command: coverage html
+          name: Generate html coverage data
+      - store_artifacts:
+          path: htmlcov
+          destination: coverage
+      - store_test_results:
+          path: /tmp/reports
+
 
 workflows:
   main:
     jobs:
-      - build-and-test
+      - build
+      - lint
+      - black
+      - test:
+          requires:
+            - build
+

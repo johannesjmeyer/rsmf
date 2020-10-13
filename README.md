@@ -1,4 +1,5 @@
 [![Documentation Status](https://readthedocs.org/projects/rsmf/badge/?version=latest)](https://rsmf.readthedocs.io/en/latest/?badge=latest)
+[![rsmf](https://circleci.com/gh/johannesjmeyer/rsmf.svg?style=svg)](https://github.com/johannesjmeyer/rsmf)
 
 # rsmf (right-size my figures)
 
@@ -110,3 +111,4 @@ Do you have trouble setting up plots for your favorite document class and it is 
 
 A big thanks for contributions goes to:
 [Samuel J. Palmer](https://github.com/sp94)
+[platipo](https://github.com/platipo)
