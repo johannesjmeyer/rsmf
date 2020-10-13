@@ -10,6 +10,7 @@ jobs:
       - checkout
       - python/install-packages:
           pkg-manager: pip
+          args: pytest
       - python/install-packages:
           args: -e .
           pkg-manager: pip
@@ -44,10 +45,6 @@ jobs:
     working_directory: ~/project
     executor: python/default
     steps:
-      - python/install-packages:
-          args: pytest
-          pkg-manager: pip
-          pypi-cache: false
       - attach_workspace:
           at: ~/
       - run:
