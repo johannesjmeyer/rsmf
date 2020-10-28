@@ -28,7 +28,7 @@ jobs:
           pkg-manager: pip
           pypi-cache: false
       - run:
-          command: python -m pylint rsmf/ tests/
+          command: python -m pylint rsmf/
           name: Run pylint
   black:
     executor: python/default

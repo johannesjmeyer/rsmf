@@ -28,6 +28,7 @@ class RevtexFormatter(RevtexLikeFormatter):
         "twocolumn": {"a4paper": 7.08},
     }
 
+    # pylint: disable=unused-argument
     def __init__(self, columns="twocolumn", fontsize=10, **kwargs):
         super().__init__(columns, "a4paper", fontsize)
 
@@ -38,5 +39,6 @@ class RevtexFormatter(RevtexLikeFormatter):
         plt.rcParams["font.family"] = "serif"
 
 
-"""Parser for the revtex document classes."""
+# pylint: disable=invalid-name
 revtex_parser = RevtexLikeParser(["{revtex4-1}", "{revtex4-2}"], RevtexFormatter)
+"""Parser for the revtex document classes."""

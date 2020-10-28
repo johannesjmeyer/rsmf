@@ -5,7 +5,7 @@ Custom formatter that can be used if the intended document class is not supporte
 import matplotlib.pyplot as plt
 
 from .abstract_formatter import AbstractFormatter
-from .fontsizes import default_fontsizes
+from .fontsizes import DEFAULT_FONTSIZES
 
 
 class CustomFormatter(AbstractFormatter):
@@ -28,7 +28,7 @@ class CustomFormatter(AbstractFormatter):
         self._wide_columnwidth = wide_columnwidth
 
         if isinstance(fontsizes, int):
-            self._fontsizes = default_fontsizes[fontsizes]
+            self._fontsizes = DEFAULT_FONTSIZES[fontsizes]
         else:
             self._fontsizes = fontsizes
 

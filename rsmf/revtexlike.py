@@ -4,7 +4,7 @@ Base for implementations of document classes alike to revtex.
 
 
 from .abstract_formatter import AbstractFormatter
-from .fontsizes import default_fontsizes
+from .fontsizes import DEFAULT_FONTSIZES
 
 
 class RevtexLikeFormatter(AbstractFormatter):
@@ -51,7 +51,7 @@ class RevtexLikeFormatter(AbstractFormatter):
     @property
     def fontsizes(self):
         """Fontsizes as specified by the underlying document."""
-        return default_fontsizes[self.fontsize]
+        return DEFAULT_FONTSIZES[self.fontsize]
 
     def __eq__(self, other):
         return (
