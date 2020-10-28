@@ -34,7 +34,7 @@ class CustomFormatter(AbstractFormatter):
             self._fontsizes = fontsizes
 
         super().__init__()
-        
+
     @property
     def columnwidth(self):
         return self._columnwidth

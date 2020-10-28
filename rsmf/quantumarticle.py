@@ -48,6 +48,11 @@ class QuantumarticleFormatter(RevtexLikeFormatter):
 
         plt.rcParams["axes.edgecolor"] = self._colors["quantumgray"]
 
+    @property
+    def colors(self):
+        """Named colors for Quantumarticle. Contains quantumviolet and quantumgray."""
+        return self._colors
+
 
 # pylint: disable=invalid-name
 quantumarticle_parser = RevtexLikeParser(["{quantumarticle}"], QuantumarticleFormatter)
