@@ -85,7 +85,7 @@ class RevtexLikeParser:
             Union[NoneType,Formatter]: Either a formatter if the target document has the given
                 document class or None.
         """
-        # TODO: Add support for regexes to support things like \documentclass[rmp,aps]{revtex4-1}
+        # IDEA: Add support for regexes to support things like \documentclass[rmp,aps]{revtex4-1}
         for documentclass_identifier in self.documentclass_identifiers:
             if documentclass_identifier in preamble:
                 return self.formatter_class(**self._extract_kwargs(preamble))

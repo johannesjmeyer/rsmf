@@ -54,9 +54,6 @@ class AbstractFormatter(abc.ABC):
         """Fontsizes as specified by the underlying document."""
         return self._fontsizes
 
-    # TODO: Brainstorm a better way to advertise additional info (like specific colors)
-    #       in the API. Maybe through a "props" dict?
-
     def set_default_fontsizes(self):
         """Adjust the fontsizes in rcParams to the default values matching
         the surrounding document."""
