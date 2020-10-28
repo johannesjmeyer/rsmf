@@ -13,10 +13,14 @@ class CustomFormatter(AbstractFormatter):
     Allows to use rsmf even if the intended document class is not supported.
 
     Args:
-        columnwidth (float, optional): Width of a single column (figure) plot in inches. Defaults to None.
-        wide_columnwidth (float, optional): Width of a two column (figure*) plot in inches. Defaults to width.
-        fontsizes (Union[int,Fontsizes], optional): Latex base fontsize or Fontsizes object. Defaults to 10.
-        pgf_preamble (str, optional): Additional packages to include in the PGF preamble, e.g. for exchanging fonts or defining commands. Defaults to "".
+        columnwidth (float, optional): Width of a single column (figure) plot in inches.
+            Defaults to None.
+        wide_columnwidth (float, optional): Width of a two column (figure*) plot in inches.
+            Defaults to width.
+        fontsizes (Union[int,Fontsizes], optional): Latex base fontsize or Fontsizes object.
+            Defaults to 10.
+        pgf_preamble (str, optional): Additional packages to include in the PGF preamble,
+            e.g. for exchanging fonts or defining commands. Defaults to "".
     """
 
     def __init__(self, columnwidth=None, wide_columnwidth=None, fontsizes=10, pgf_preamble=""):
