@@ -21,6 +21,9 @@ class Fontsizes:
         Huge (int, optional): Even more huge text. Defaults to 25.
     """
 
+    # pylint: disable=invalid-name,too-many-instance-attributes,too-many-arguments
+    # pylint: disable=too-few-public-methods
+
     def __init__(
         self,
         tiny=5,
@@ -46,11 +49,10 @@ class Fontsizes:
         self.Huge = Huge
 
 
+DEFAULT_FONTSIZES_10 = Fontsizes()
 """Default fontsize palette based on normal size 10."""
-default_fontsizes_10 = Fontsizes()
 
-"""Default fontsize palette based on normal size 11."""
-default_fontsizes_11 = Fontsizes(
+DEFAULT_FONTSIZES_11 = Fontsizes(
     tiny=6,
     scriptsize=8,
     footnotesize=9,
@@ -62,9 +64,9 @@ default_fontsizes_11 = Fontsizes(
     huge=20,
     Huge=25,
 )
+"""Default fontsize palette based on normal size 11."""
 
-"""Default fontsize palette based on normal size 12."""
-default_fontsizes_12 = Fontsizes(
+DEFAULT_FONTSIZES_12 = Fontsizes(
     tiny=6,
     scriptsize=8,
     footnotesize=10,
@@ -76,10 +78,11 @@ default_fontsizes_12 = Fontsizes(
     huge=25,
     Huge=25,
 )
+"""Default fontsize palette based on normal size 12."""
 
-"""Default fontsize palettes for a given normal size."""
-default_fontsizes = {
-    10: default_fontsizes_10,
-    11: default_fontsizes_11,
-    12: default_fontsizes_12,
+DEFAULT_FONTSIZES = {
+    10: DEFAULT_FONTSIZES_10,
+    11: DEFAULT_FONTSIZES_11,
+    12: DEFAULT_FONTSIZES_12,
 }
+"""Default fontsize palettes for a given normal size."""

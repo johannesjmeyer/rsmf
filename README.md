@@ -1,5 +1,8 @@
+[![PyPI version](https://badge.fury.io/py/rsmf.svg)](https://pypi.org/project/rsmf/)
 [![Documentation Status](https://readthedocs.org/projects/rsmf/badge/?version=latest)](https://rsmf.readthedocs.io/en/latest/?badge=latest)
-[![rsmf](https://circleci.com/gh/johannesjmeyer/rsmf.svg?style=svg)](https://github.com/johannesjmeyer/rsmf)
+[![rsmf](https://circleci.com/gh/johannesjmeyer/rsmf.svg?style=shield)](https://github.com/johannesjmeyer/rsmf)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 
 # rsmf (right-size my figures)
 

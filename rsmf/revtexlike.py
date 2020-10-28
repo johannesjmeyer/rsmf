@@ -4,7 +4,7 @@ Base for implementations of document classes alike to revtex.
 
 
 from .abstract_formatter import AbstractFormatter
-from .fontsizes import default_fontsizes
+from .fontsizes import DEFAULT_FONTSIZES
 
 
 class RevtexLikeFormatter(AbstractFormatter):
@@ -14,8 +14,11 @@ class RevtexLikeFormatter(AbstractFormatter):
     Inherited classes should set the following:
       self._columnwidths
       self._wide_columnwidths
-      
+
     """
+
+    _columnwidths = {}
+    _wide_columnwidths = {}
 
     def __init__(self, columns, paper, fontsize):
         """Sets up the plot with the fitting arguments so that the font sizes of the plot
@@ -48,7 +51,7 @@ class RevtexLikeFormatter(AbstractFormatter):
     @property
     def fontsizes(self):
         """Fontsizes as specified by the underlying document."""
-        return default_fontsizes[self.fontsize]
+        return DEFAULT_FONTSIZES[self.fontsize]
 
     def __eq__(self, other):
         return (
@@ -66,6 +69,8 @@ class RevtexLikeParser:
         formatter_class (class): Class object describing the formatter.
     """
 
+    # pylint: disable=too-few-public-methods
+
     def __init__(self, documentclass_identifiers, formatter_class):
         self.documentclass_identifiers = documentclass_identifiers
         self.formatter_class = formatter_class
@@ -80,7 +85,7 @@ class RevtexLikeParser:
             Union[NoneType,Formatter]: Either a formatter if the target document has the given
                 document class or None.
         """
-        # TODO: Add support for regexes to support things like \documentclass[rmp,aps]{revtex4-1}
+        # IDEA: Add support for regexes to support things like \documentclass[rmp,aps]{revtex4-1}
         for documentclass_identifier in self.documentclass_identifiers:
             if documentclass_identifier in preamble:
                 return self.formatter_class(**self._extract_kwargs(preamble))

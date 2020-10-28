@@ -5,7 +5,7 @@ Custom formatter that can be used if the intended document class is not supporte
 import matplotlib.pyplot as plt
 
 from .abstract_formatter import AbstractFormatter
-from .fontsizes import default_fontsizes
+from .fontsizes import DEFAULT_FONTSIZES
 
 
 class CustomFormatter(AbstractFormatter):
@@ -13,22 +13,25 @@ class CustomFormatter(AbstractFormatter):
     Allows to use rsmf even if the intended document class is not supported.
 
     Args:
-        columnwidth (float, optional): Width of a single column (figure) plot in inches. Defaults to None.
-        wide_columnwidth (float, optional): Width of a two column (figure*) plot in inches. Defaults to width.
-        fontsizes (Union[int,Fontsizes], optional): Latex base fontsize or Fontsizes object. Defaults to 10.
-        pgf_preamble (str, optional): Additional packages to include in the PGF preamble, e.g. for exchanging fonts or defining commands. Defaults to "".
+        columnwidth (float, optional): Width of a single column (figure) plot in inches.
+            Defaults to None.
+        wide_columnwidth (float, optional): Width of a two column (figure*) plot in inches.
+            Defaults to width.
+        fontsizes (Union[int,Fontsizes], optional): Latex base fontsize or Fontsizes object.
+            Defaults to 10.
+        pgf_preamble (str, optional): Additional packages to include in the PGF preamble,
+            e.g. for exchanging fonts or defining commands. Defaults to "".
     """
 
     def __init__(self, columnwidth=None, wide_columnwidth=None, fontsizes=10, pgf_preamble=""):
         self._columnwidth = columnwidth
         self._wide_columnwidth = wide_columnwidth
+        self._pgf_preamble = pgf_preamble
 
         if isinstance(fontsizes, int):
-            self._fontsizes = default_fontsizes[fontsizes]
+            self._fontsizes = DEFAULT_FONTSIZES[fontsizes]
         else:
             self._fontsizes = fontsizes
-
-        self._pgf_preamble = pgf_preamble
 
         super().__init__()
 

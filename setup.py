@@ -2,9 +2,8 @@ from setuptools import find_packages, setup
 
 version = "0.2"
 
-requirements = [
-    "matplotlib",
-]
+with open("requirements.txt") as f:
+    requirements = f.read().splitlines()
 
 info = {
     "name": "rsmf",

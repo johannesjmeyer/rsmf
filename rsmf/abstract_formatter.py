@@ -8,7 +8,7 @@ import warnings
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-from .fontsizes import default_fontsizes_10
+from .fontsizes import DEFAULT_FONTSIZES_10
 
 
 class AbstractFormatter(abc.ABC):
@@ -18,47 +18,52 @@ class AbstractFormatter(abc.ABC):
 
     def __init__(self):
         """Sets up the plotting environment."""
-        self._fontsizes = default_fontsizes_10
+        if not hasattr(self, "_fontsizes"):
+            self._fontsizes = DEFAULT_FONTSIZES_10
 
         mpl.use("pgf")
         mpl.style.use("seaborn-white")
+
         self.set_rcParams()
-        # TODO: Make sure set_rcParams is called after the fontsizes in the subclass are adjusted
 
     @abc.abstractproperty
     def columnwidth(self):
+        """columnwidth of the document."""
         raise NotImplementedError("columnwidth is not implemented in subclass.")
 
     def width(self):
+        """columnwidth of the document. (Deprecated)"""
         warnings.warn("width is deprecated, use columnwidth instead.")
 
         return self.columnwidth
 
     @abc.abstractproperty
     def wide_columnwidth(self):
+        """Wide columnwidth of the document."""
         raise NotImplementedError("wide_columnwidth is not implemented in subclass.")
 
     @property
     def wide_width(self):
+        """Wide columnwidth of the document. (Deprecated)"""
         warnings.warn("wide_width is deprecated, use wide_columnwidth instead.")
 
         return self.wide_columnwidth
 
     @property
     def fontsizes(self):
+        """Fontsizes as specified by the underlying document."""
         return self._fontsizes
 
-    # TODO: Brainstorm a better way to advertise additional info (like specific colors)
-    #       in the API. Maybe through a "props" dict?
-
     def set_default_fontsizes(self):
-        """Adjust the fontsizes in rcParams to the default values matching the surrounding document."""
+        """Adjust the fontsizes in rcParams to the default values matching
+        the surrounding document."""
         plt.rcParams["axes.labelsize"] = self.fontsizes.small
         plt.rcParams["axes.titlesize"] = self.fontsizes.large
         plt.rcParams["xtick.labelsize"] = self.fontsizes.footnotesize
         plt.rcParams["ytick.labelsize"] = self.fontsizes.footnotesize
         plt.rcParams["font.size"] = self.fontsizes.small
 
+    # pylint: disable=invalid-name
     def set_rcParams(self):
         """Adjust the rcParams to the default values."""
         self.set_default_fontsizes()
@@ -87,17 +92,21 @@ class AbstractFormatter(abc.ABC):
         and the font sizes of the document are well aligned.
 
         Args:
-            aspect_ratio (float, optional): the aspect ratio (width/height) of your plot. Defaults to the golden ratio.
-            width_ratio (float, optional): the width of your plot in multiples of \columnwidth. Defaults to 1.0.
-            wide (bool, optional): indicates if the figures spans two columns in twocolumn mode, 
-                i.e. if the figure* environment is used, has no effect in onecolumn mode . Defaults to False.
+            aspect_ratio (float, optional): the aspect ratio (width/height) of your plot.
+                Defaults to the golden ratio.
+            width_ratio (float, optional): the width of your plot in multiples of \columnwidth.
+                Defaults to 1.0.
+            wide (bool, optional): indicates if the figures spans two columns in twocolumn mode,
+                i.e. if the figure* environment is used, has no effect in onecolumn mode.
+                Defaults to False.
 
         Returns:
             matplotlib.Figure: The matplotlib Figure object
         """
         if wide and not self.wide_columnwidth:
             raise ValueError("The formatter's wide_columnwidth was not set.")
-        elif not wide and not self.columnwidth:
+
+        if not wide and not self.columnwidth:
             raise ValueError("The formatter's columnwidth was not set.")
 
         base_width = self.wide_columnwidth if wide else self.columnwidth

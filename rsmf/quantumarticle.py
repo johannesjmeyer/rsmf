@@ -32,6 +32,7 @@ class QuantumarticleFormatter(RevtexLikeFormatter):
 
     _colors = {"quantumviolet": "#53257F", "quantumgray": "#555555"}
 
+    # pylint: disable=unused-argument
     def __init__(self, columns="twocolumn", paper="a4paper", fontsize=10, **kwargs):
         super().__init__(columns, paper, fontsize)
 
@@ -47,6 +48,12 @@ class QuantumarticleFormatter(RevtexLikeFormatter):
 
         plt.rcParams["axes.edgecolor"] = self._colors["quantumgray"]
 
+    @property
+    def colors(self):
+        """Named colors for Quantumarticle. Contains quantumviolet and quantumgray."""
+        return self._colors
 
-"""Parser for the quantumarticle document class."""
+
+# pylint: disable=invalid-name
 quantumarticle_parser = RevtexLikeParser(["{quantumarticle}"], QuantumarticleFormatter)
+"""Parser for the quantumarticle document class."""
