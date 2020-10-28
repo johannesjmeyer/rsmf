@@ -89,7 +89,7 @@ class AbstractFormatter(abc.ABC):
         Args:
             aspect_ratio (float, optional): the aspect ratio (width/height) of your plot. Defaults to the golden ratio.
             width_ratio (float, optional): the width of your plot in multiples of \columnwidth. Defaults to 1.0.
-            wide (bool, optional): indicates if the figures spans two columns in twocolumn mode, 
+            wide (bool, optional): indicates if the figures spans two columns in twocolumn mode,
                 i.e. if the figure* environment is used, has no effect in onecolumn mode . Defaults to False.
 
         Returns:

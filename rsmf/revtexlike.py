@@ -14,7 +14,7 @@ class RevtexLikeFormatter(AbstractFormatter):
     Inherited classes should set the following:
       self._columnwidths
       self._wide_columnwidths
-      
+
     """
 
     def __init__(self, columns, paper, fontsize):
