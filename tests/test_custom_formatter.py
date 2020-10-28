@@ -2,7 +2,22 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pytest
 
+from rsmf.fontsizes import DEFAULT_FONTSIZES_12
 from rsmf.custom_formatter import CustomFormatter
+
+
+class TestClass:
+    """Test the functionality of the CustomFormatter class."""
+
+    def test_init(self):
+        formatter = CustomFormatter(
+            columnwidth=2.4, wide_columnwidth=3.6, fontsizes=12, pgf_preamble="TEST"
+        )
+
+        assert formatter.columnwidth == 2.4
+        assert formatter.wide_columnwidth == 3.6
+        assert formatter.fontsizes.normalsize == DEFAULT_FONTSIZES_12.normalsize
+        assert formatter._pgf_preamble == "TEST"
 
 
 class TestRcParams:
