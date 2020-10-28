@@ -21,7 +21,7 @@ class Fontsizes:
         Huge (int, optional): Even more huge text. Defaults to 25.
     """
 
-    # pylint: disable=bad-continuation,invalid-name,too-many-instance-attributes,too-many-arguments
+    # pylint: disable=invalid-name,too-many-instance-attributes,too-many-arguments
     # pylint: disable=too-few-public-methods
 
     def __init__(
