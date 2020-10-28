@@ -28,15 +28,13 @@ class CustomFormatter(AbstractFormatter):
         self._wide_columnwidth = wide_columnwidth
         self._pgf_preamble = pgf_preamble
 
-        super().__init__()
-
         if isinstance(fontsizes, int):
             self._fontsizes = DEFAULT_FONTSIZES[fontsizes]
         else:
             self._fontsizes = fontsizes
 
-        self.set_default_fontsizes()
-
+        super().__init__()
+        
     @property
     def columnwidth(self):
         return self._columnwidth

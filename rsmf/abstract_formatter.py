@@ -18,12 +18,13 @@ class AbstractFormatter(abc.ABC):
 
     def __init__(self):
         """Sets up the plotting environment."""
-        self._fontsizes = DEFAULT_FONTSIZES_10
+        if not hasattr(self, "_fontsizes"):
+            self._fontsizes = DEFAULT_FONTSIZES_10
 
         mpl.use("pgf")
         mpl.style.use("seaborn-white")
+
         self.set_rcParams()
-        # TODO: Make sure set_rcParams is called after the fontsizes in the subclass are adjusted
 
     @abc.abstractproperty
     def columnwidth(self):
