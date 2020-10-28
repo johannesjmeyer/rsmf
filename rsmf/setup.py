@@ -10,7 +10,7 @@ from .revtex import revtex_parser
 
 _PARSERS = [quantumarticle_parser, revtex_parser]
 
-_comment_regex = re.compile("(%.*)")
+_COMMENT_REGEX = re.compile("(%.*)")
 
 
 def _clean_preamble(preamble):
@@ -24,7 +24,7 @@ def _clean_preamble(preamble):
     Returns:
         str: The cleaned preamble
     """
-    preamble = _comment_regex.sub("", preamble)
+    preamble = _COMMENT_REGEX.sub("", preamble)
     return preamble
 
 
@@ -53,7 +53,8 @@ def setup(arg):
     """Get a formatter corresponding to the document's class.
 
     Args:
-        arg (str): Either path to a tex file or preamble of a tex file, containing at least the \documentclass command.
+        arg (str): Either path to a tex file or preamble of a tex file,
+            containing at least the \\documentclass command.
 
     Raises:
         Exception: When no formatter for the given document was found.
@@ -76,5 +77,6 @@ def setup(arg):
             return result
 
     raise Exception(
-        "No formatter was found for the given argument. This means either there is no formatter, or, if you gave a file path that it does not exist."
+        "No formatter was found for the given argument. This means either there is no formatter,"
+        + " or, if you gave a file path that it does not exist."
     )

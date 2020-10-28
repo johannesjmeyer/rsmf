@@ -17,6 +17,9 @@ class RevtexLikeFormatter(AbstractFormatter):
 
     """
 
+    _columnwidths = {}
+    _wide_columnwidths = {}
+
     def __init__(self, columns, paper, fontsize):
         """Sets up the plot with the fitting arguments so that the font sizes of the plot
         and the font sizes of the document are well aligned.
@@ -65,6 +68,8 @@ class RevtexLikeParser:
         documentclass_identifiers (List[string]): Strings identifying the supported document class.
         formatter_class (class): Class object describing the formatter.
     """
+
+    # pylint: disable=too-few-public-methods
 
     def __init__(self, documentclass_identifiers, formatter_class):
         self.documentclass_identifiers = documentclass_identifiers

@@ -8,7 +8,7 @@ import warnings
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 
-from .fontsizes import default_fontsizes_10
+from .fontsizes import DEFAULT_FONTSIZES_10
 
 
 class AbstractFormatter(abc.ABC):
@@ -18,7 +18,7 @@ class AbstractFormatter(abc.ABC):
 
     def __init__(self):
         """Sets up the plotting environment."""
-        self._fontsizes = default_fontsizes_10
+        self._fontsizes = DEFAULT_FONTSIZES_10
 
         mpl.use("pgf")
         mpl.style.use("seaborn-white")
