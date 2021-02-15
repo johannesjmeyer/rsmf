@@ -33,7 +33,10 @@ class TestHelperMethods:
                 r"\documentclass{quantumarticle} %\documentclass{revtex4-1}",
                 r"\documentclass{quantumarticle} ",
             ),
-            (r"\documentclass{quantumarticle}%{revtex4-1}", r"\documentclass{quantumarticle}"),
+            (
+                r"\documentclass{quantumarticle}%{revtex4-1}",
+                r"\documentclass{quantumarticle}",
+            ),
             (
                 "%\\documentclass[prl]{revtex4-1}\n\\documentclass[noarxiv]{quantumarticle}",
                 "\n\\documentclass[noarxiv]{quantumarticle}",

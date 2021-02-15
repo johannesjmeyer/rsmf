@@ -38,6 +38,8 @@ class RevtexFormatter(RevtexLikeFormatter):
 
         plt.rcParams["font.family"] = "serif"
 
+        plt.rcParams["pgf.preamble"] = r"\usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
+
 
 # pylint: disable=invalid-name
 revtex_parser = RevtexLikeParser(["{revtex4-1}", "{revtex4-2}"], RevtexFormatter)
