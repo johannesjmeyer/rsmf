@@ -69,7 +69,7 @@ class AbstractFormatter(abc.ABC):
         self.set_default_fontsizes()
 
         plt.rcParams["pgf.texsystem"] = "pdflatex"
-        plt.rcParams["text.usetex"] = False
+        plt.rcParams["text.usetex"] = True
         plt.rcParams["pgf.rcfonts"] = True
 
         plt.rcParams["xtick.major.width"] = 0.5

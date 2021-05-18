@@ -35,7 +35,7 @@ class TestRcParams:
 
         assert plt.rcParams["pgf.texsystem"] == "pdflatex"
         assert plt.rcParams["font.family"] == ["sans-serif"]
-        assert plt.rcParams["text.usetex"] == False
+        assert plt.rcParams["text.usetex"] == True
         assert plt.rcParams["pgf.rcfonts"] == True
         assert plt.rcParams["pgf.preamble"] == pgf_preamble
 
