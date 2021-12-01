@@ -50,7 +50,7 @@ class TestRcParams:
     """Test that rcParams are properly set."""
 
     def test_rcParams(self):
-        preamble = r"\documentclass[a4paper,12pt,noarxiv]{quantumarticle}"
+        preamble = r"\documentclass[12pt]{iopart}"
         formatter = setup(preamble)
 
         assert plt.rcParams["axes.labelsize"] == formatter.fontsizes.small
@@ -60,13 +60,9 @@ class TestRcParams:
         assert plt.rcParams["font.size"] == formatter.fontsizes.small
 
         assert plt.rcParams["pgf.texsystem"] == "pdflatex"
-        assert plt.rcParams["font.family"] == ["sans-serif"]
         assert plt.rcParams["text.usetex"] == True
         assert plt.rcParams["pgf.rcfonts"] == True
-        assert (
-            plt.rcParams["pgf.preamble"]
-            == r"\usepackage{lmodern} \usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
-        )
+        assert plt.rcParams["pgf.preamble"] == ""
 
         assert plt.rcParams["xtick.direction"] == "in"
         assert plt.rcParams["ytick.direction"] == "in"
@@ -81,8 +77,6 @@ class TestRcParams:
         assert plt.rcParams["legend.framealpha"] == 1.0
         assert plt.rcParams["legend.fancybox"] == False
 
-        assert plt.rcParams["axes.edgecolor"] == formatter._colors["quantumgray"]
-
 
 class TestFigure:
     """Test that the constructed figures have the proper dimensions."""
@@ -91,39 +85,39 @@ class TestFigure:
         "paper_kwargs,figure_kwargs,expected_format",
         [
             (
-                {"columns": "twocolumn", "paper": "a4paper", "fontsize": 11},
+                {"columns": "twocolumn", "fontsize": 10},
                 {"aspect_ratio": 1.0, "width_ratio": 1.0, "wide": False},
-                (3.22, 3.22),
+                (3.29, 3.29),
             ),
             (
-                {"columns": "twocolumn", "paper": "letterpaper", "fontsize": 11},
+                {"columns": "twocolumn", "fontsize": 10},
                 {"aspect_ratio": 1.4, "width_ratio": 1.0, "wide": False},
-                (3.34, 4.676),
+                (3.29, 4.606),
             ),
             (
-                {"columns": "twocolumn", "paper": "a4paper", "fontsize": 11},
+                {"columns": "twocolumn", "fontsize": 10},
                 {"aspect_ratio": 1.0, "width_ratio": 2.0, "wide": True},
-                (13.44, 13.44),
+                (13.56, 13.56),
             ),
             (
-                {"columns": "twocolumn", "paper": "letterpaper", "fontsize": 11},
+                {"columns": "onecolumn", "fontsize": 12},
                 {"aspect_ratio": 2.0, "width_ratio": 0.6, "wide": True},
-                (4.17, 8.34),
+                (3.72, 7.44),
             ),
             (
-                {"columns": "onecolumn", "paper": "a4paper", "fontsize": 11},
+                {"columns": "onecolumn", "fontsize": 12},
                 {"aspect_ratio": 2.0, "width_ratio": 1.0, "wide": False},
-                (5.93, 11.86),
+                (6.2, 12.4),
             ),
             (
-                {"columns": "onecolumn", "paper": "letterpaper", "fontsize": 11},
+                {"columns": "onecolumn", "fontsize": 12},
                 {"aspect_ratio": 0.8, "width_ratio": 1.5, "wide": False},
-                (9.24, 7.392),
+                (9.3, 7.44),
             ),
         ],
     )
     def test_figure_format(self, paper_kwargs, figure_kwargs, expected_format):
         """Assert that the figure output has the correct dimensions."""
-        formatter = QuantumarticleFormatter(**paper_kwargs)
+        formatter = IOPArtFormatter(**paper_kwargs)
         fig = formatter.figure(**figure_kwargs)
         assert np.allclose(fig.get_size_inches(), np.array(expected_format))
