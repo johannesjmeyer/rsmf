@@ -6,6 +6,14 @@ Base for implementations of document classes alike to revtex.
 from .abstract_formatter import AbstractFormatter
 from .fontsizes import DEFAULT_FONTSIZES
 
+# TODO: Raw information
+# iopart supports 10pt and 12pt
+# 10pt: columnwidth = 5.17 (in) (= wide)
+# 10pt + ioptwocol after maketitle = 3.29, wide = 6.78 (in)
+# 12pt: columnwidth = 6.2 (in) (= wide_columnwidth, as there is no 2-column)
+# Note that twocol is not specified in the document class but via a separate command
+# Fontsizes seem to be standard
+
 
 class IOPArtFormatter(AbstractFormatter):
     """
@@ -65,11 +73,6 @@ class IOPArtParser:
     """
 
     # pylint: disable=too-few-public-methods
-
-    def __init__(self, documentclass_identifiers, formatter_class):
-        self.documentclass_identifiers = documentclass_identifiers
-        self.formatter_class = formatter_class
-
     def __call__(self, preamble):
         """Parse the given preamble and extract the formatter.
 
@@ -117,3 +120,7 @@ class IOPArtParser:
             formatter_kwargs["fontsize"] = 10
 
         return formatter_kwargs
+
+# pylint: disable=invalid-name
+iopart_parser = IOPArtParser()
+"""Parser for the iopart document class."""
