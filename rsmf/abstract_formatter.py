@@ -26,7 +26,7 @@ class AbstractFormatter(abc.ABC):
 
         self.set_rcParams()
 
-    @abc.abstractproperty
+    @abc.abstractmethod
     def columnwidth(self):
         """columnwidth of the document."""
         raise NotImplementedError("columnwidth is not implemented in subclass.")
@@ -37,7 +37,7 @@ class AbstractFormatter(abc.ABC):
 
         return self.columnwidth
 
-    @abc.abstractproperty
+    @abc.abstractmethod
     def wide_columnwidth(self):
         """Wide columnwidth of the document."""
         raise NotImplementedError("wide_columnwidth is not implemented in subclass.")
