@@ -40,6 +40,7 @@ def _extract_content(path):
     """
     lines = []
 
+    # pylint: disable=unspecified-encoding
     with open(path, "r") as file:
         for line in file:
             lines.append(line)
