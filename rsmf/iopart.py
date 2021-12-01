@@ -13,15 +13,15 @@ class IOPArtFormatter(AbstractFormatter):
     """
 
     _columnwidths = {
-        (10, "onecolumn") : 5.17,
-        (10, "twocolumn") : 3.29,
-        (12, "onecolumn") : 6.2,
+        (10, "onecolumn"): 5.17,
+        (10, "twocolumn"): 3.29,
+        (12, "onecolumn"): 6.2,
     }
 
     _wide_columnwidths = {
-        (10, "onecolumn") : 5.17,
-        (10, "twocolumn") : 6.78,
-        (12, "onecolumn") : 6.2,
+        (10, "onecolumn"): 5.17,
+        (10, "twocolumn"): 6.78,
+        (12, "onecolumn"): 6.2,
     }
 
     def __init__(self, columns="onecolumn", fontsize=10):
@@ -55,15 +55,11 @@ class IOPArtFormatter(AbstractFormatter):
         return DEFAULT_FONTSIZES[self.fontsize]
 
     def __eq__(self, other):
-        return (
-            self.fontsize == other.fontsize
-            and self.columns == other.columns
-        )
+        return self.fontsize == other.fontsize and self.columns == other.columns
 
 
 class IOPArtParser:
-    """A parser for the iopart document class.
-    """
+    """A parser for the iopart document class."""
 
     # pylint: disable=too-few-public-methods
     def __call__(self, content):
@@ -104,6 +100,7 @@ class IOPArtParser:
             formatter_kwargs["fontsize"] = 10
 
         return formatter_kwargs
+
 
 # pylint: disable=invalid-name
 iopart_parser = IOPArtParser()

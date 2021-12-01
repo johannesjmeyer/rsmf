@@ -51,7 +51,7 @@ def setup(arg):
     """Get a formatter corresponding to the document's class.
 
     Args:
-        arg (str): Either path to a tex file or some content (most of the time the preamble) 
+        arg (str): Either path to a tex file or some content (most of the time the preamble)
             of a tex file, containing at least the \\documentclass command.
 
     Raises:
