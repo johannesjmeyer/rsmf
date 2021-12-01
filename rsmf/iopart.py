@@ -76,10 +76,8 @@ class IOPArtParser:
             Union[NoneType,Formatter]: Either a formatter if the target document has the given
                 document class or None.
         """
-        # IDEA: Add support for regexes to support things like \documentclass[rmp,aps]{revtex4-1}
-        for documentclass_identifier in self.documentclass_identifiers:
-            if documentclass_identifier in content:
-                return self.formatter_class(**self._extract_kwargs(content))
+        if "iopart" in content:
+            return IOPArtFormatter(**self._extract_kwargs(content))
 
         return None
 
