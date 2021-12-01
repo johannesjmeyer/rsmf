@@ -2,7 +2,7 @@ from pathlib import Path
 
 import pytest
 
-from rsmf.setup import _clean_preamble, _extract_preamble, setup
+from rsmf.setup import _clean_content, _extract_content, setup
 
 DUMMY_PATH = Path(__file__).parent / "dummy.tex"
 
@@ -24,7 +24,7 @@ class TestHelperMethods:
     def test_no_clean(self, preamble):
         """Test that strings that need no cleaning are not altered."""
 
-        assert preamble == _clean_preamble(preamble)
+        assert preamble == _clean_content(preamble)
 
     @pytest.mark.parametrize(
         "preamble,expected_output",
@@ -47,10 +47,10 @@ class TestHelperMethods:
     def test_remove_comment(self, preamble, expected_output):
         """Test that strings that need no cleaning are not altered."""
 
-        assert expected_output == _clean_preamble(preamble)
+        assert expected_output == _clean_content(preamble)
 
-    def test_extract_preamble(self):
-        preamble = _extract_preamble(DUMMY_PATH)
+    def test_extract_content(self):
+        preamble = _extract_content(DUMMY_PATH)
 
         assert (
             preamble
@@ -68,11 +68,14 @@ class TestHelperMethods:
 
 \hyphenation{awe-some}
 
+\begin{document}
+    \lipsum
+\end{document}
 """
         )
 
-    def test_extract_and_clean_preamble(self):
-        preamble = _clean_preamble(_extract_preamble(DUMMY_PATH))
+    def test_extract_and_clean_content(self):
+        preamble = _clean_content(_extract_content(DUMMY_PATH))
 
         assert (
             preamble
@@ -90,6 +93,9 @@ class TestHelperMethods:
 
 \hyphenation{awe-some}
 
+\begin{document}
+    \lipsum
+\end{document}
 """
         )
 
