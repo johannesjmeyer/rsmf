@@ -26,6 +26,7 @@ class AbstractFormatter(abc.ABC):
 
         self.set_rcParams()
 
+    @property
     @abc.abstractmethod
     def columnwidth(self):
         """columnwidth of the document."""
@@ -37,6 +38,7 @@ class AbstractFormatter(abc.ABC):
 
         return self.columnwidth
 
+    @property
     @abc.abstractmethod
     def wide_columnwidth(self):
         """Wide columnwidth of the document."""
