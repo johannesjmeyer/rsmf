@@ -78,29 +78,29 @@ class IOPArtParser:
         """
         # IDEA: Add support for regexes to support things like \documentclass[rmp,aps]{revtex4-1}
         for documentclass_identifier in self.documentclass_identifiers:
-            if documentclass_identifier in preamble:
-                return self.formatter_class(**self._extract_kwargs(preamble))
+            if documentclass_identifier in content:
+                return self.formatter_class(**self._extract_kwargs(content))
 
         return None
 
     @staticmethod
-    def _extract_kwargs(preamble):
-        r"""Parse the preamble to extract the informations relevant for plot style.
+    def _extract_kwargs(content):
+        r"""Parse the content to extract the informations relevant for plot style.
 
         Args:
-            preamble (str): The preamble, containing at least the \documentclass command.
+            content (str): The content, containing at least the \documentclass command.
 
         Returns:
             Dict: formatter_kwargs (columns, paper, fontsize)
         """
         formatter_kwargs = {}
 
-        if "\\ioptwocol" in preamble:
+        if "\\ioptwocol" in content:
             formatter_kwargs["columns"] = "twocolumn"
         else:
             formatter_kwargs["columns"] = "onecolumn"
 
-        if "12pt" in preamble:
+        if "12pt" in content:
             formatter_kwargs["fontsize"] = 12
         else:
             formatter_kwargs["fontsize"] = 10
