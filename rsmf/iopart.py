@@ -1,18 +1,10 @@
 """
-Base for implementations of document classes alike to revtex.
+Formatter for iopart document class.
 """
 
 
 from .abstract_formatter import AbstractFormatter
 from .fontsizes import DEFAULT_FONTSIZES
-
-# TODO: Raw information
-# iopart supports 10pt and 12pt
-# 10pt: columnwidth = 5.17 (in) (= wide)
-# 10pt + ioptwocol after maketitle = 3.29, wide = 6.78 (in)
-# 12pt: columnwidth = 6.2 (in) (= wide_columnwidth, as there is no 2-column)
-# Note that twocol is not specified in the document class but via a separate command
-# Fontsizes seem to be standard
 
 
 class IOPArtFormatter(AbstractFormatter):
@@ -20,23 +12,29 @@ class IOPArtFormatter(AbstractFormatter):
     A Formatter for the iopart document class.
     """
 
-    _columnwidths = {}
-    _wide_columnwidths = {}
+    _columnwidths = {
+        (10, "onecolumn") : 5.17,
+        (10, "twocolumn") : 3.29,
+        (12, "onecolumn") : 6.2,
+    }
 
-    def __init__(self, columns, paper, fontsize):
+    _wide_columnwidths = {
+        (10, "onecolumn") : 5.17,
+        (10, "twocolumn") : 6.78,
+        (12, "onecolumn") : 6.2,
+    }
+
+    def __init__(self, columns="onecolumn", fontsize=10):
         """Sets up the plot with the fitting arguments so that the font sizes of the plot
         and the font sizes of the document are well aligned.
 
         Args:
             columns (str, optional):  the columns you used to set up your quantumarticle,
-                either "onecolumn" or "twocolumn". Defaults to "twocolumn".
-            paper (str, optional): the paper size you used to set up your quantumarticle,
-                either "a4paper" or "letterpaper". Defaults to "a4paper".
+                either "onecolumn" or "twocolumn". Defaults to "onecolumn".
             fontsize (int, optional): the fontsize you used to set up your quantumarticle,
-                either 10, 11 or 12. Defaults to 10.
+                either 10 or 12. Defaults to 10.
         """
         self.columns = columns
-        self.paper = paper
         self.fontsize = fontsize
 
         super().__init__()
@@ -44,12 +42,12 @@ class IOPArtFormatter(AbstractFormatter):
     @property
     def columnwidth(self):
         """columnwidth of the document."""
-        return self._columnwidths[self.columns][self.paper]
+        return self._columnwidths[(self.fontsize, self.columns)]
 
     @property
     def wide_columnwidth(self):
         """Wide columnwidth of the document."""
-        return self._wide_columnwidths[self.columns][self.paper]
+        return self._wide_columnwidths[(self.fontsize, self.columns)]
 
     @property
     def fontsizes(self):
@@ -60,24 +58,19 @@ class IOPArtFormatter(AbstractFormatter):
         return (
             self.fontsize == other.fontsize
             and self.columns == other.columns
-            and self.paper == other.paper
         )
 
 
 class IOPArtParser:
     """A parser for the iopart document class.
-
-    Args:
-        documentclass_identifiers (List[string]): Strings identifying the supported document class.
-        formatter_class (class): Class object describing the formatter.
     """
 
     # pylint: disable=too-few-public-methods
-    def __call__(self, preamble):
-        """Parse the given preamble and extract the formatter.
+    def __call__(self, content):
+        """Parse the given content and extract the formatter.
 
         Args:
-            preamble (string): Preamble of the target document.
+            content (string): Content of the target document.
 
         Returns:
             Union[NoneType,Formatter]: Either a formatter if the target document has the given
@@ -102,19 +95,12 @@ class IOPArtParser:
         """
         formatter_kwargs = {}
 
-        if "onecolumn" in preamble:
-            formatter_kwargs["columns"] = "onecolumn"
-        else:
+        if "\\ioptwocol" in preamble:
             formatter_kwargs["columns"] = "twocolumn"
-
-        if "letterpaper" in preamble:
-            formatter_kwargs["paper"] = "letterpaper"
         else:
-            formatter_kwargs["paper"] = "a4paper"
+            formatter_kwargs["columns"] = "onecolumn"
 
-        if "11pt" in preamble:
-            formatter_kwargs["fontsize"] = 11
-        elif "12pt" in preamble:
+        if "12pt" in preamble:
             formatter_kwargs["fontsize"] = 12
         else:
             formatter_kwargs["fontsize"] = 10
