@@ -91,7 +91,7 @@ class TestFigure:
             ),
             (
                 {"columns": "twocolumn", "fontsize": 11},
-                {"aspect_ratio": 1.4, "width_ratio": 1.0, "wide": False},
+                {"aspect_ratio": 0.71428, "width_ratio": 1.0, "wide": False},
                 (3.42, 4.788),
             ),
             (
@@ -101,17 +101,17 @@ class TestFigure:
             ),
             (
                 {"columns": "twocolumn", "fontsize": 11},
-                {"aspect_ratio": 2.0, "width_ratio": 0.6, "wide": True},
+                {"aspect_ratio": 0.5, "width_ratio": 0.6, "wide": True},
                 (4.248, 8.496),
             ),
             (
                 {"columns": "onecolumn", "fontsize": 11},
-                {"aspect_ratio": 2.0, "width_ratio": 1.0, "wide": False},
+                {"aspect_ratio": 0.5, "width_ratio": 1.0, "wide": False},
                 (3.42, 6.84),
             ),
             (
                 {"columns": "onecolumn", "fontsize": 11},
-                {"aspect_ratio": 0.8, "width_ratio": 1.5, "wide": False},
+                {"aspect_ratio": 1.25, "width_ratio": 1.5, "wide": False},
                 (5.13, 4.104),
             ),
         ],

@@ -87,7 +87,7 @@ class AbstractFormatter(abc.ABC):
         plt.rcParams["legend.framealpha"] = 1.0
         plt.rcParams["legend.fancybox"] = False
 
-    def figure(self, aspect_ratio=1 / 1.62, width_ratio=1.0, wide=False):
+    def figure(self, aspect_ratio=1.62, width_ratio=1.0, wide=False):
         r"""Sets up the plot with the fitting arguments so that the font sizes of the plot
         and the font sizes of the document are well aligned.
 
@@ -112,6 +112,6 @@ class AbstractFormatter(abc.ABC):
         base_width = self.wide_columnwidth if wide else self.columnwidth
 
         width = base_width * width_ratio
-        height = width * aspect_ratio
+        height = width / aspect_ratio
 
         return plt.figure(figsize=(width, height), dpi=120, facecolor="white")
