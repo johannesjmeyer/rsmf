@@ -12,9 +12,9 @@ class RevtexFormatter(RevtexLikeFormatter):
     and the font sizes of the document are well aligned.
 
     Args:
-        columns (str, optional):  the columns you used to set up your quantumarticle,
+        columns (str, optional):  the columns you used to set up your revtex article,
             either "onecolumn" or "twocolumn". Defaults to "twocolumn".
-        fontsize (int, optional): the fontsize you used to set up your quantumarticle,
+        fontsize (int, optional): the fontsize you used to set up your revtex article,
             either 10, 11 or 12. Defaults to 10.
     """
 
