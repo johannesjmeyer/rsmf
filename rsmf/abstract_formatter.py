@@ -92,7 +92,7 @@ class AbstractFormatter(abc.ABC):
         and the font sizes of the document are well aligned.
 
         Args:
-            aspect_ratio (float, optional): the aspect ratio (width/height) of your plot.
+            aspect_ratio (float, optional): the aspect ratio (height/width) of your plot.
                 Defaults to the golden ratio.
             width_ratio (float, optional): the width of your plot in multiples of \columnwidth.
                 Defaults to 1.0.

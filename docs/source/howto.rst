@@ -66,7 +66,7 @@ Figures
 -------
 The setup routine will return a formatter. This formatter can then be used to create matplotlib figure objects by invoking the method ``formatter.figure``. It has three arguments:
 
-* ``aspect_ratio`` (float, optional): the aspect ratio (width/height) of your plot. Defaults to the golden ratio.
+* ``aspect_ratio`` (float, optional): the aspect ratio (height/width) of your plot. Defaults to the inverse of the golden ratio.
 * ``width_ratio`` (float, optional): the width of your plot in multiples of ``\columnwidth``. Defaults to 1.0.
 * ``wide`` (bool, optional): indicates if the figures spans two columns in twocolumn mode, 
                 i.e. if the figure* environment is used, has no effect in onecolumn mode . Defaults to False.
@@ -112,6 +112,8 @@ and included via the multi-column ``figure*`` environment:
     \end{figure*}
 
 Note that you should always save your figures in some sort of vectorized format, like ``pdf`` and that calling ``plt.tight_layout()`` before saving usually makes your plots nicer.
+
+Moreover, observe that the ``aspect_ratio`` parameter is defined as the height of the plot devided by its width. Even though aspect ratios are more commonly defined as width/height, this choice results in having the width and the height of the figure proportional to ``width_ratio`` and ``aspect_ratio`` respectively. 
 
 Custom
 ~~~~~~
