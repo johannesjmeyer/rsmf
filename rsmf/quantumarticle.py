@@ -42,9 +42,9 @@ class QuantumarticleFormatter(RevtexLikeFormatter):
 
         plt.rcParams["font.family"] = "sans-serif"
 
-        plt.rcParams[
-            "pgf.preamble"
-        ] = r"\usepackage{lmodern} \usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
+        plt.rcParams["pgf.preamble"] = (
+            r"\usepackage{lmodern} \usepackage[utf8x]{inputenc} \usepackage[T1]{fontenc}"
+        )
 
         plt.rcParams["axes.edgecolor"] = self._colors["quantumgray"]
 
