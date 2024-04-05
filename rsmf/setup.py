@@ -39,6 +39,7 @@ def _extract_preamble(path):
     """
     lines = []
 
+    # pylint: disable=W1514
     with open(path, "r") as file:
         for line in file:
             if "\\begin{document}" in line:
@@ -76,7 +77,7 @@ def setup(arg):
         if result:
             return result
 
-    raise Exception(
+    raise RuntimeError(
         "No formatter was found for the given argument. This means either there is no formatter,"
         + " or, if you gave a file path that it does not exist."
     )
