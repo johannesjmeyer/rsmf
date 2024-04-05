@@ -2,7 +2,6 @@
 Base for implementations of document classes alike to revtex.
 """
 
-
 from .abstract_formatter import AbstractFormatter
 from .fontsizes import DEFAULT_FONTSIZES
 

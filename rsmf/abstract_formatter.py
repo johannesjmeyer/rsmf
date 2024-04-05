@@ -26,7 +26,8 @@ class AbstractFormatter(abc.ABC):
 
         self.set_rcParams()
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def columnwidth(self):
         """columnwidth of the document."""
         raise NotImplementedError("columnwidth is not implemented in subclass.")
@@ -37,7 +38,8 @@ class AbstractFormatter(abc.ABC):
 
         return self.columnwidth
 
-    @abc.abstractproperty
+    @property
+    @abc.abstractmethod
     def wide_columnwidth(self):
         """Wide columnwidth of the document."""
         raise NotImplementedError("wide_columnwidth is not implemented in subclass.")
@@ -92,7 +94,7 @@ class AbstractFormatter(abc.ABC):
         and the font sizes of the document are well aligned.
 
         Args:
-            aspect_ratio (float, optional): the aspect ratio (width/height) of your plot.
+            aspect_ratio (float, optional): the aspect ratio (height/width) of your plot.
                 Defaults to the golden ratio.
             width_ratio (float, optional): the width of your plot in multiples of \columnwidth.
                 Defaults to 1.0.
