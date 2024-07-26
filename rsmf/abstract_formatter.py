@@ -22,7 +22,13 @@ class AbstractFormatter(abc.ABC):
             self._fontsizes = DEFAULT_FONTSIZES_10
 
         mpl.use("pgf")
-        mpl.style.use("seaborn-white")
+
+        styles = mpl.style.available
+
+        if "seaborn-white" in styles:
+            mpl.style.use("seaborn-white")
+        elif "seaborn-v0_8-white" in styles:
+            mpl.style.use("seaborn-v0_8-white")
 
         self.set_rcParams()
 
