@@ -47,6 +47,9 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/
+      - python/install-packages:
+          args: pytest-mock
+          pkg-manager: pip
       - run:
           command: coverage run -m pytest --junitxml=/tmp/reports/pytest-report.xml .
           name: Run unit tests
