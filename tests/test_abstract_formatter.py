@@ -1,7 +1,9 @@
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 import numpy as np
 import pytest
 
+import rsmf.abstract_formatter
 from rsmf.abstract_formatter import AbstractFormatter
 
 
@@ -22,6 +24,44 @@ def abstract_formatter_mock(monkeypatch):
             return fmt
 
         yield formatter
+
+
+class TestInit:
+    """Test that the initialization of the AbstractFormatter class is properly executed."""
+
+    @pytest.mark.parametrize(
+        "styles,target",
+        [
+            (
+                ["test", "seaborn-white", "seaborn"],
+                "seaborn-white",
+            ),
+            (
+                ["test", "seaborn-white", "seaborn", "seaborn-v0_8-white"],
+                "seaborn-white",
+            ),
+            (
+                ["test", "seaborn", "test2", "seaborn-v0_8-white"],
+                "seaborn-v0_8-white",
+            ),
+            (
+                ["test", "seaborn", "test2"],
+                None,
+            ),
+        ],
+    )
+    def test_style_selection(self, monkeypatch, abstract_formatter_mock, mocker, styles, target):
+        mocker.patch("rsmf.abstract_formatter.mpl.style.use")
+
+        with monkeypatch.context() as m:
+            m.setattr(rsmf.abstract_formatter.mpl.style, "available", styles)
+
+            formatter = abstract_formatter_mock()
+
+            if target is None:
+                rsmf.abstract_formatter.mpl.style.use.assert_not_called()
+            else:
+                rsmf.abstract_formatter.mpl.style.use.assert_called_once_with(target)
 
 
 class TestRcParams:
