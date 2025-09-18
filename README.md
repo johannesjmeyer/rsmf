@@ -1,3 +1,35 @@
+
+<div align="right">
+  <details>
+    <summary >🌐 Language</summary>
+    <div>
+      <div align="center">
+        <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=en">English</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=zh-CN">简体中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=zh-TW">繁體中文</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=ja">日本語</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=ko">한국어</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=hi">हिन्दी</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=th">ไทย</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=fr">Français</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=de">Deutsch</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=es">Español</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=it">Italiano</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=ru">Русский</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=pt">Português</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=nl">Nederlands</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=pl">Polski</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=ar">العربية</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=fa">فارسی</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=tr">Türkçe</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=vi">Tiếng Việt</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=id">Bahasa Indonesia</a>
+        | <a href="https://openaitx.github.io/view.html?user=johannesjmeyer&project=rsmf&lang=as">অসমীয়া</
+      </div>
+    </div>
+  </details>
+</div>
+
 [![PyPI version](https://badge.fury.io/py/rsmf.svg)](https://pypi.org/project/rsmf/)
 [![Documentation Status](https://readthedocs.org/projects/rsmf/badge/?version=latest)](https://rsmf.readthedocs.io/en/latest/?badge=latest)
 [![rsmf](https://circleci.com/gh/johannesjmeyer/rsmf.svg?style=shield)](https://github.com/johannesjmeyer/rsmf)
